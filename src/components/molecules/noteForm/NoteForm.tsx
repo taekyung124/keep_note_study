@@ -1,8 +1,7 @@
-// src/components/notes/NoteForm.tsx
-
 import React, { useState } from 'react';
-import { useNoteStore } from '../../store/noteStore';
-import { NewNote } from '../../types/note';
+import { useNoteStore } from '../../../store/noteStore';
+import { NewNote } from '../../../types/note';
+import { Color } from '../../../types/color'
 
 const NoteForm: React.FC = () => {
 	// 💡 useNoteStore에서 addNote 액션만 가져옵니다.
@@ -24,7 +23,7 @@ const NoteForm: React.FC = () => {
 		const newNote: NewNote = {
 			title: title.trim(),
 			content: content.trim(),
-			color: "#f5f5dc", // 기본 색상 지정
+			color: Color.TRANSPARENT, // 기본 색상 지정
 		};
 
 		try {

@@ -1,0 +1,47 @@
+@use 'sass:map';
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
+// colors
+.fcBlack { color: variables.$colorBlack !important; }
+.fcDarkGray { color: variables.$colorDarkGray !important; }
+.fcGray { color: variables.$colorGray !important; }
+.fcWhiteGray { color: variables.$colorWhiteGray !important; }
+.fcWhite { color: variables.$colorWhite !important; }
+
+.bgSalmon { background-color: variables.$bgSalmon !important; }
+.bgOrange { background-color: variables.$bgOrange !important; }
+.bgYellow { background-color: variables.$bgYellow !important; }
+.bgLightGreen { background-color: variables.$bgLightGreen !important; }
+.bgGreen { background-color: variables.$bgGreen !important; }
+.bgLightBlue { background-color: variables.$bgLightBlue !important; }
+.bgBlue { background-color: variables.$bgBlue !important; }
+.bgPurple { background-color: variables.$bgPurple !important; }
+.bgPink { background-color: variables.$bgPink !important; }
+.bgBrown { background-color: variables.$bgBrown !important; }
+.bgGray { background-color: variables.$bgGray !important; }
+
+// fonts
+.fwBold { font-weight: variables.$fwBold !important; }
+.fwSb { font-weight: variables.$fwSb !important; }
+.fwMd { font-weight: variables.$fwMd !important; }
+.fwRgl { font-weight: variables.$fwRgl !important; }
+.fwLt { font-weight: variables.$fwLt !important; }
+
+.taLeft { text-align: left !important; }
+.taRight { text-align: right !important; }
+.taCenter { text-align: center !important; }
+
+.tdUdl { text-decoration: underline !important; }
+.tdLine { text-decoration: line-through !important; }
+
+// offscreen
+.offscreen {
+	position: absolute !important;
+	display: block;
+	overflow: hidden;
+	height: 1px;
+	width: 1px;
+	clip: rect(1px, 1px, 1px, 1px);
+	font-size: 14px !important;
+}

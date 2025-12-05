@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useNoteStore } from "../store/noteStore";
 import {Note} from "../types/note";
-import NoteCard from "../components/noteCard/NoteCard";
-import NoteForm from "../components/noteForm/NoteForm";
+import NoteCard from "../components/molecules/noteCard/NoteCard";
+import NoteForm from "../components/molecules/noteForm/NoteForm";
 
 export default function Memo() {
 	const { notes, fetchNotes } = useNoteStore();

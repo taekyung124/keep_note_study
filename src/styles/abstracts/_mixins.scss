@@ -1,0 +1,125 @@
+@use 'variables';
+
+@mixin hide-scrollbar {
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+@mixin ellipsis($lines) {
+	display: -webkit-box;
+	word-break: break-word;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-line-clamp: $lines;
+	-webkit-box-orient: vertical;
+}
+
+@mixin flex-column($gap) {
+	display: flex;
+	flex-direction: column;
+	gap: $gap;
+}
+
+@mixin font_size_2xl($type : 'heading', $lineHeight : 'default') { // 20px
+	font-size: variables.$fs2Xl;
+	line-height: variables.$lh2Xl;
+	letter-spacing: variables.$letterSpacing;
+
+	@if ($type == 'heading') {
+		font-weight: variables.$fwMd;
+	} @else if ($type == 'sb') {
+		font-weight: variables.$fwSb;
+	} @else if ($type == 'rgl') {
+		font-weight: variables.$fwRgl;
+	} @else if ($type == 'lt') {
+		font-weight: variables.$fwLt;
+	}
+
+	@if not($lineHeight == 'default') {
+		line-height: $lineHeight;
+	}
+}
+
+@mixin font_size_xl($type : 'body', $lineHeight : 'default') { // 16px
+	font-size: variables.$fsXl;
+	line-height: variables.$lhXl;
+	letter-spacing: variables.$letterSpacing;
+
+	@if ($type == 'body') {
+		font-weight: variables.$fwRgl;
+	} @else if ($type == 'sb') {
+		font-weight: variables.$fwSb;
+	} @else if ($type == 'md') {
+		font-weight: variables.$fwMd;
+	} @else if ($type == 'lt') {
+		font-weight: variables.$fwLt;
+	}
+
+	@if not($lineHeight == 'default') {
+		line-height: $lineHeight;
+	}
+}
+
+@mixin font_size_lg($type : 'body', $lineHeight : 'default') { // 15px
+	font-size: variables.$fsLg;
+	line-height: variables.$lhLg;
+	letter-spacing: variables.$letterSpacing;
+
+	@if ($type == 'body') {
+		font-weight: variables.$fwRgl;
+	} @else if ($type == 'sb') {
+		font-weight: variables.$fwSb;
+	} @else if ($type == 'md') {
+		font-weight: variables.$fwMd;
+	} @else if ($type == 'lt') {
+		font-weight: variables.$fwLt;
+	}
+
+	@if not($lineHeight == 'default') {
+		line-height: $lineHeight;
+	}
+}
+
+@mixin font_size_md($type : 'body', $lineHeight : 'default') { // 14px
+	font-size: variables.$fsMd;
+	line-height: variables.$lhMd;
+	letter-spacing: variables.$letterSpacing;
+
+	@if ($type == 'body') {
+		font-weight: variables.$fwRgl;
+	} @else if ($type == 'sb') {
+		font-weight: variables.$fwSb;
+	} @else if ($type == 'md') {
+		font-weight: variables.$fwMd;
+	} @else if ($type == 'lt') {
+		font-weight: variables.$fwLt;
+	}
+
+	@if not($lineHeight == 'default') {
+		line-height: $lineHeight;
+	}
+}
+
+@mixin font_size_sm($type : 'body', $lineHeight : 'default') { // 12px
+	font-size: variables.$fsSm;
+	line-height: variables.$lhSm;
+	letter-spacing: variables.$letterSpacing;
+
+	@if ($type == 'body') {
+		font-weight: variables.$fwRgl;
+	} @else if ($type == 'sb') {
+		font-weight: variables.$fwSb;
+	} @else if ($type == 'md') {
+		font-weight: variables.$fwMd;
+	} @else if ($type == 'lt') {
+		font-weight: variables.$fwLt;
+	}
+
+	@if not($lineHeight == 'default') {
+		line-height: $lineHeight;
+	}
+}
