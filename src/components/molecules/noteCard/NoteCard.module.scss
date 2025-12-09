@@ -3,8 +3,69 @@
 @use '../../../styles/abstracts/mixins';
 
 .cardWrap {
+	position: relative;
 	width: 300px;
-	padding: 15px;
-	margin: 10px 0;
+	padding: 15px 15px 50px 15px;
+	margin: 10px;
 	border-radius: 8px;
+	border: 1px solid #AAA;
+
+	.imageContainer {
+		width: 100%;
+		height: 268px;
+		margin-bottom: 10px;
+
+		img {
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	.title {
+		@include mixins.font_size_2xl;
+	}
+	.text {
+		@include mixins.font_size_md;
+	}
+
+	.hoverBox {
+		display: none;
+
+		.editList {
+			display: flex;
+			gap: 6px;
+			.item {
+				position: relative;
+				padding: 5px;
+
+				.colorList {
+					position: absolute;
+					left: 0;
+					top: 30px;
+					display: flex;
+					flex-wrap: wrap;
+					min-width: 250px;
+					padding: 10px;
+					border-radius: 4px;
+					border: 1px solid variables.$colorWhiteGray;
+					background-color: variables.$colorWhite;
+				}
+			}
+		}
+	}
+
+	&:hover {
+		.hoverBox {
+			z-index: 10;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			display: block;
+			width: 100%;
+			height: 34px;
+			padding: 0 15px;
+			margin-bottom: 8px;
+		}
+	}
 }

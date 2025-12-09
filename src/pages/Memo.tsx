@@ -5,22 +5,34 @@ import NoteCard from "../components/molecules/noteCard/NoteCard";
 import NoteForm from "../components/molecules/noteForm/NoteForm";
 
 export default function Memo() {
-	const { notes, fetchNotes } = useNoteStore();
+	const { notes, fetchNotes, loading, error, _hasHydrated } = useNoteStore();
 
 	useEffect(() => {
-		fetchNotes();
-	}, [fetchNotes]); // 💡 ESLint 경고 방지를 위해 fetchNotes를 의존성 배열에 추가
+		if (_hasHydrated) {
+			fetchNotes();
+		}
+	}, [fetchNotes, _hasHydrated]);
+
+	if (!_hasHydrated) {
+		return <div>로컬 저장소에서 데이터를 불러오는 중...</div>;
+	}
 
 	return (
 		<div>
 			<NoteForm />
 			<h2>메모 리스트</h2>
-			{notes.length === 0 ? (
+			{error && <p style={{color: 'red'}}>오류 발생: {error}</p>}
+			{loading ? (
+				<p>메모를 불러오는 중입니다...</p>
+			) : notes.length === 0 ? (
 				<p>메모가 없습니다. 새로 작성해 보세요.</p>
 			) : (
-				notes.map((note:Note) => (
-					<NoteCard key={note.id} note={note} />
-				))
+				<div style={{
+					display: "flex",
+					flexWrap: "wrap",
+				}}>
+					{notes.map((note: Note) => (<NoteCard key={note.id} note={note} />))}
+				</div>
 			)}
 		</div>
 	);

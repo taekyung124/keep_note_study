@@ -5,34 +5,52 @@ import { Note, NewNote } from "../types/note";
 
 interface NoteState {
 	notes: Note[];
+	loading: boolean;
+	error: string | null;
 	fetchNotes: () => Promise<void>;
 	addNote: (data: NewNote) => Promise<void>;
 	deleteNote: (id: number) => Promise<void>;
+	updateNote: (id: number, updateData: Partial<Note>) => void;
+	_hasHydrated: boolean;
 }
 
 const noteStoreCreator: StateCreator<NoteState> = (set, get) => ({
 	notes: [],
+	loading: false,
+	error: null,
+	_hasHydrated: false,
 
 	fetchNotes: async () => {
-		if (get().notes.length === 0) {
-			try {
-				const res = await axios.get<Note[]>("/notes");
-				set({ notes: res.data });
-			} catch (error) {
-				console.error("API에서 메모 로드 실패:", error);
-			}
-		}
+		set({ loading: false, error: null });
+		console.log("메모 로드 완료 (Persist 미들웨어 사용)");
 	},
 
 	addNote: async (data: NewNote) => {
-		const res = await axios.post<Note>("/notes", data);
-		set((state) => ({ notes: [...state.notes, res.data] }));
+		try {
+			const res = await axios.post<Note>("/notes", data);
+			set((state) => ({ notes: [...state.notes, res.data] }));
+		} catch (err) {
+			console.error('메모 추가 실패', err);
+		}
 	},
 
 	deleteNote: async (id) => {
-		await axios.delete(`/notes/${id}`);
+		try {
+			await axios.delete(`/notes/${id}`);
+			set((state) => ({
+				notes: state.notes.filter(note => note.id !== id)
+			}));
+		} catch (err) {
+			console.error('메모 삭제 실패', err);
+			throw err;
+		}
+	},
+
+	updateNote: (id, updateData) => {
 		set((state) => ({
-			notes: state.notes.filter(note => note.id !== id)
+			notes: state.notes.map((note) =>
+				note.id === id ? { ...note, ...updateData } : note
+			),
 		}));
 	},
 });
@@ -43,6 +61,13 @@ export const useNoteStore = create<NoteState>()(
 		{
 			name: "note-storage",
 			partialize: (state) => ({ notes: state.notes }),
+			onRehydrateStorage: () => (state) => {
+				if (state) {
+					state._hasHydrated = true;
+
+					console.log("Hydration complete. _hasHydrated set to true.");
+				}
+			},
 		}
 	)
 );

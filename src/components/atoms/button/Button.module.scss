@@ -1,0 +1,102 @@
+@use 'sass:map';
+@use '../../../styles/abstracts/variables';
+@use '../../../styles/abstracts/mixins';
+
+/* button */
+a, button {
+	&[disabled], &[aria-disabled=true], &.disabled {
+		pointer-events: none !important;
+		cursor: default !important;
+		text-decoration: none !important;
+
+		* {
+			text-decoration: none !important;
+		}
+	}
+}
+
+%btnCommon {
+	display: inline-block;
+	box-sizing: border-box;
+	vertical-align: top;
+
+	.text {
+		display: inline-block;
+		vertical-align: top;
+		text-align: center;
+	}
+}
+
+.button {
+	@extend %btnCommon;
+
+	.icon {
+		display: inline-block;
+		vertical-align: top;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: contain;
+	}
+
+	// size
+	&.xxl {
+		.text {
+			@include mixins.font_size_2xl;
+		}
+	}
+	&.xl {
+		.text {
+			@include mixins.font_size_xl;
+		}
+	}
+	&.lg {
+		.text {
+			@include mixins.font_size_lg;
+		}
+	}
+	&.md {
+		.text {
+			@include mixins.font_size_md;
+		}
+	}
+	&.sm {
+		.text {
+			@include mixins.font_size_sm;
+		}
+	}
+
+	// icon button
+	&:not(:has(.text)) {
+		&.xxl {
+			.icon {
+				width: 48px;
+				height: 48px;
+			}
+		}
+		&.xl {
+			.icon {
+				width: 34px;
+				height: 34px;
+			}
+		}
+		&.lg {
+			.icon {
+				width: 24px;
+				height: 24px;
+			}
+		}
+		&.md {
+			.icon {
+				width: 20px;
+				height: 20px;
+			}
+		}
+		&.sm {
+			.icon {
+				width: 18px;
+				height: 18px;
+			}
+		}
+
+	}
+}

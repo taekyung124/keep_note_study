@@ -4,29 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2591737d-e343-49d5-81a7-1c2d8263f7df" name="Changes" comment="- react, typescript 프로젝트 세팅&#10;- axios, axios-mock-adapter, zustand 설치&#10;- 메모 카드 등록 및 삭제 테스트">
-      <change afterPath="$PROJECT_DIR$/custom.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/atoms/colorChip/ColorChip.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/atoms/colorChip/ColorChip.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/atoms/tag/Tag.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/atoms/tag/Tag.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/molecules/noteCard/NoteCard.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/organisms/header/Header.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/organisms/header/Header.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/abstracts/_mixins.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/abstracts/_variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/common/_layouts.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/common/_utilities.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/color.ts" afterDir="false" />
+    <list default="true" id="2591737d-e343-49d5-81a7-1c2d8263f7df" name="Changes" comment="- colorchip 테스트&#10;- mixin, variables 추가">
+      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_check.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_close.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_fix.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_fix_active.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_image.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_keep.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_more.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_palette.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_search.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/icons/iocn_canvas.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/atoms/button/Button.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/atoms/button/Button.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/atoms/fileUpload/FileUpload.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/atoms/fileUpload/FileUpload.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/axiosInstance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/axiosInstance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/custom.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/mock/notes.mock.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mock/notes.mock.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/noteCard/NoteCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/noteCard/NoteCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/noteForm/NoteForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/noteForm/NoteForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/molecules/noteCard/NoteCard.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/noteCard/NoteCard.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/molecules/noteCard/NoteCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/noteCard/NoteCard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Memo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Memo.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/noteStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/noteStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/global.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/global.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/note.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/note.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +64,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\_project\_study\keep_note_study\public\assets\icons" />
       <recent name="D:\_project\_study\keep_note_study\src\components\molecules" />
       <recent name="D:\_project\_study\keep_note_study\src\api\mock" />
     </key>
@@ -103,7 +104,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1764807216213</updated>
-      <workItem from="1764807217382" duration="39195000" />
+      <workItem from="1764807217382" duration="84782000" />
     </task>
     <task id="LOCAL-00001" summary="- react, typescript 프로젝트 세팅&#10;- axios, axios-mock-adapter, zustand 설치&#10;- 메모 카드 등록 및 삭제 테스트">
       <option name="closed" value="true" />
@@ -121,7 +122,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764832016019</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="- colorchip 테스트&#10;- mixin, variables 추가">
+      <option name="closed" value="true" />
+      <created>1764925204955</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1764925204955</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,6 +138,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="- react, typescript 프로젝트 세팅&#10;- axios, axios-mock-adapter, zustand 설치&#10;- 메모 카드 등록 및 삭제 테스트" />
-    <option name="LAST_COMMIT_MESSAGE" value="- react, typescript 프로젝트 세팅&#10;- axios, axios-mock-adapter, zustand 설치&#10;- 메모 카드 등록 및 삭제 테스트" />
+    <MESSAGE value="- colorchip 테스트&#10;- mixin, variables 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="- colorchip 테스트&#10;- mixin, variables 추가" />
   </component>
 </project>
