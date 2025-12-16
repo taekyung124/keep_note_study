@@ -97,10 +97,16 @@ mock.onPost(/\/notes\/\d+\/upload-image/).reply((config) => {
 	let updatedNote: Note | undefined;
 	let found = false;
 
-	// 메모 찾아서 imageUrl 업데이트
+	// 메모 찾아서 imageUrls 배열 업데이트
 	const newNotes: Note[] = notes.map((n) => {
 		if (n.id === id) {
-			updatedNote = { ...n, imageUrl: tempImageUrl };
+			const currentImageUrls = n.imageUrls || []; // null/undefined일 경우 빈 배열로 처리
+
+			updatedNote = {
+				...n,
+				imageUrls: [...currentImageUrls, tempImageUrl]
+			};
+
 			found = true;
 			return updatedNote;
 		}

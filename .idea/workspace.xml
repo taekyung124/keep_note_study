@@ -4,28 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2591737d-e343-49d5-81a7-1c2d8263f7df" name="Changes" comment="- colorchip 테스트&#10;- mixin, variables 추가">
-      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_check.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_close.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_fix.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_fix_active.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_image.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_keep.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_more.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_palette.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_search.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/icons/iocn_canvas.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/atoms/button/Button.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/atoms/button/Button.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/atoms/fileUpload/FileUpload.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/atoms/fileUpload/FileUpload.tsx" afterDir="false" />
+    <list default="true" id="2591737d-e343-49d5-81a7-1c2d8263f7df" name="Changes" comment="- button 컴포넌트 추가&#10;- 아이콘 이미지 저장&#10;- FileUpload 컴포넌트 작업중&#10;- 이미지 추가 시 임시 이미지 나오도록 처리">
+      <change afterPath="$PROJECT_DIR$/src/components/molecules/dropdown/Dropdown.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/molecules/dropdown/Dropdown.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/molecules/noteForm/NoteForm.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/molecules/searchForm/SearchForm.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/molecules/searchForm/SearchForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/custom.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/custom.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/mock/notes.mock.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mock/notes.mock.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/atoms/button/Button.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/atoms/button/Button.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/atoms/button/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/atoms/button/Button.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/molecules/noteCard/NoteCard.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/noteCard/NoteCard.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/molecules/noteCard/NoteCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/noteCard/NoteCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/molecules/noteForm/NoteForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/noteForm/NoteForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Memo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Memo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/noteStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/noteStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/abstracts/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/abstracts/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/common/_utilities.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/common/_utilities.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/types/note.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/note.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +98,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1764807216213</updated>
-      <workItem from="1764807217382" duration="84782000" />
+      <workItem from="1764807217382" duration="136242000" />
     </task>
     <task id="LOCAL-00001" summary="- react, typescript 프로젝트 세팅&#10;- axios, axios-mock-adapter, zustand 설치&#10;- 메모 카드 등록 및 삭제 테스트">
       <option name="closed" value="true" />
@@ -130,7 +124,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764925204955</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="- button 컴포넌트 추가&#10;- 아이콘 이미지 저장&#10;- FileUpload 컴포넌트 작업중&#10;- 이미지 추가 시 임시 이미지 나오도록 처리">
+      <option name="closed" value="true" />
+      <created>1765270359625</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1765270359625</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,6 +141,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="- react, typescript 프로젝트 세팅&#10;- axios, axios-mock-adapter, zustand 설치&#10;- 메모 카드 등록 및 삭제 테스트" />
     <MESSAGE value="- colorchip 테스트&#10;- mixin, variables 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="- colorchip 테스트&#10;- mixin, variables 추가" />
+    <MESSAGE value="- button 컴포넌트 추가&#10;- 아이콘 이미지 저장&#10;- FileUpload 컴포넌트 작업중&#10;- 이미지 추가 시 임시 이미지 나오도록 처리" />
+    <option name="LAST_COMMIT_MESSAGE" value="- button 컴포넌트 추가&#10;- 아이콘 이미지 저장&#10;- FileUpload 컴포넌트 작업중&#10;- 이미지 추가 시 임시 이미지 나오도록 처리" />
   </component>
 </project>

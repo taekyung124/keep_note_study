@@ -1,0 +1,36 @@
+@use 'sass:map';
+@use '../../../styles/abstracts/variables';
+@use '../../../styles/abstracts/mixins';
+
+.searchForm {
+	display: flex;
+	align-items: center;
+	max-width: 720px;
+	padding: 3px 16px;
+	border-radius: 8px;
+	background-color: variables.$colorWhiteGray;
+	border: 1px solid transparent;
+	transition: background-color .1s ease-in;
+
+	&:has(input:focus) {
+		background: variables.$colorWhite;
+		box-shadow: 0 1px 1px 0 rgba(65, 69, 73, .3), 0 1px 3px 1px rgba(65, 69, 73, .15);
+	}
+
+	.searchInput {
+		flex: 1;
+		padding: 0 11px;
+
+		input {
+			background: transparent;
+			border: none;
+			@include mixins.font_size_lg;
+			color: variables.$colorDarkGray;
+			height: 46px;
+			outline: none;
+			width: 100%;
+			padding: 11px 0;
+			box-sizing: border-box;
+		}
+	}
+}

@@ -3,7 +3,7 @@ export interface Note {
 	title: string;
 	content: string;
 	color: string;
-	imageUrl?: string | null;
+	imageUrls?: string[] | null;
 }
 
 export type NewNote = Omit<Note, 'id'>;

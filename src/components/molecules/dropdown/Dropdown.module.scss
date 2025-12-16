@@ -1,0 +1,32 @@
+@use 'sass:map';
+@use '../../../styles/abstracts/variables';
+@use '../../../styles/abstracts/mixins';
+
+.Dropdown {
+	position: absolute;
+	top: 30px;
+	left: 0;
+	background-color: variables.$colorWhite;
+	border: 1px solid rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 2px 6px 2px rgba(60, 64, 67, 0.15);
+	border-radius: 4px;
+
+	.menuList {
+		width: 100%;
+		padding: 6px 0;
+
+		.menuItem {
+			width: 100%;
+			padding: 5px 10px 5px 17px;
+
+			.label {
+				display: inline-block;
+				width: 100%;
+				@include mixins.font_size_md;
+				color: variables.$colorDarkGray;
+				white-space: nowrap;
+				vertical-align: top;
+			}
+		}
+	}
+}

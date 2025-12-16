@@ -31,6 +31,11 @@ const Btn: React.FC<ButtonProps> = ({
 		size && styles[`${size}`],
 	];
 
+	const classNames = [
+		...baseClass,
+		disabled ? styles.disabled : ''
+	];
+
 	if (tag === 'a') {
 		const{href, ...anchorProps} = restProps as React.AnchorHTMLAttributes<HTMLAnchorElement>;
 		return (
@@ -51,7 +56,7 @@ const Btn: React.FC<ButtonProps> = ({
 
 	return (
 		<button
-			className={`${baseClass.join(' ')}`}
+			className={`${classNames.join(' ')}`}
 			type={type}
 			disabled={disabled}
 			onClick={onClick}

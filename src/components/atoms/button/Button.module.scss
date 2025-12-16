@@ -22,6 +22,7 @@ a, button {
 
 	.text {
 		display: inline-block;
+		color: variables.$colorDarkGray;
 		vertical-align: top;
 		text-align: center;
 	}
@@ -41,27 +42,27 @@ a, button {
 	// size
 	&.xxl {
 		.text {
-			@include mixins.font_size_2xl;
+			@include mixins.font_size_2xl('sb');
 		}
 	}
 	&.xl {
 		.text {
-			@include mixins.font_size_xl;
+			@include mixins.font_size_xl('sb');
 		}
 	}
 	&.lg {
 		.text {
-			@include mixins.font_size_lg;
+			@include mixins.font_size_lg('sb');
 		}
 	}
 	&.md {
 		.text {
-			@include mixins.font_size_md;
+			@include mixins.font_size_md('sb');
 		}
 	}
 	&.sm {
 		.text {
-			@include mixins.font_size_sm;
+			@include mixins.font_size_sm('sb');
 		}
 	}
 
@@ -98,5 +99,10 @@ a, button {
 			}
 		}
 
+	}
+
+	// disabled
+	&[disabled], &[aria-disabled=true], &.disabled {
+		opacity: 0.6;
 	}
 }
