@@ -4,6 +4,7 @@ import {Note} from "../types/note";
 import NoteCard from "../components/molecules/noteCard/NoteCard";
 import NoteForm from "../components/molecules/noteForm/NoteForm";
 import SearchForm from "../components/molecules/searchForm/SearchForm";
+import SearchFilter from "../components/molecules/searchFilter/SearchFilter";
 
 export default function Memo() {
 	const { notes, fetchNotes, loading, error, _hasHydrated } = useNoteStore();
@@ -21,6 +22,8 @@ export default function Memo() {
 	return (
 		<div>
 			<SearchForm />
+			<SearchFilter notes={notes} />
+			<div>여기에 필터링 된 메모 목록</div>
 			<NoteForm />
 			<h2>메모 리스트</h2>
 			{error && <p style={{color: 'red'}}>오류 발생: {error}</p>}
@@ -34,6 +37,8 @@ export default function Memo() {
 					display: "grid",
 					gridTemplateColumns: "repeat(auto-fit, minmax(300px, max-content))",
 					width: "100%",
+					maxWidth: 960,
+					margin: "0 auto",
 					alignItems: "start",
 					justifyContent: "start",
 				}}>

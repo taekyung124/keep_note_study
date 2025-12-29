@@ -1,0 +1,109 @@
+@use 'sass:map';
+@use '../../../styles/abstracts/variables';
+@use '../../../styles/abstracts/mixins';
+
+%IconStyle {
+	display: inline-block;
+	width: 48px;
+	height: 48px;
+	margin: 0 auto;
+	vertical-align: top;
+}
+
+.searchFilter {
+	.filterBox {
+		width: 100%;
+		max-width: 640px;
+		margin: 20px auto;
+		background-color: variables.$colorWhite;
+		box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3),0 1px 3px 1px rgba(60,64,67,0.15);
+		overflow: hidden;
+
+		.boxHeader {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			width: 100%;
+			padding: 10px;
+			.filterTitle {
+				@include mixins.font_size_lg('sb');
+				color: variables.$colorBlack;
+			}
+		}
+		.boxContent {
+			.filterList {
+				display: flex;
+				gap: 4px;
+				flex-wrap: wrap;
+
+				.filterItem {
+					&:has(.btnType) {
+						width: 25%;
+
+						.btnType {
+							width: 100%;
+							aspect-ratio: 1;
+							background-color: variables.$colorLightYellow;
+							transition: background-color .4s ease, opacity .4s ease;
+
+							.iconFix {
+								@extend %IconStyle;
+								background: url('../../../../public/assets/icons/icon_fix.svg') center no-repeat;
+							}
+							.iconText {
+								display: inline-block;
+								width: 24px;
+								height: 24px;
+								padding: 24px;
+								vertical-align: top;
+								background: url('../../../../public/assets/icons/icon_list.svg') center no-repeat;
+							}
+							.iconImg {
+								@extend %IconStyle;
+								background: url('../../../../public/assets/icons/icon_image.svg') center no-repeat;
+							}
+							.iconCanvas {
+								@extend %IconStyle;
+								background: url('../../../../public/assets/icons/icon_canvas.svg') center no-repeat;
+							}
+							.text {
+								display: inline-block;
+								width: 100%;
+								margin-top: 10px;
+								padding: 0 4px;
+								@include mixins.font_size_md('sb');
+								color: variables.$colorBlack;
+								vertical-align: top;
+							}
+
+							&:active {
+								background-color: variables.$bgOrange;
+								opacity: .4;
+							}
+						}
+					}
+
+					&:has(.btnColorChip) {
+						width: 88px;
+
+						.btnColorChip {
+							width: 100%;
+							aspect-ratio: 1;
+							padding: 10px;
+
+							.color {
+								display: inline-block;
+								width: 100%;
+								height: 100%;
+								border: 1px solid variables.$colorDarkGray;
+								border-radius: 40px;
+								overflow: hidden;
+								vertical-align: top;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

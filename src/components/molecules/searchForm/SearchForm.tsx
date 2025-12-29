@@ -17,7 +17,7 @@ const SearchForm: React.FC<SearchFormState> = ({
 	}, []);
 
 	const handleClearSearch = useCallback(() => {
-		setSearchText(''); // 빈 문자열로 초기화
+		setSearchText('');
 	}, []);
 
 	return (

@@ -7,6 +7,7 @@ type CommonProps = {
 	icon?: string;
 	offscreen?: string;
 	disabled?: boolean;
+	addClass?: string;
 	onClick?: () => void;
 }
 
@@ -23,7 +24,7 @@ type ButtonAsAnchor = {
 export type ButtonProps = CommonProps  & (ButtonAsButton | ButtonAsAnchor);
 
 const Btn: React.FC<ButtonProps> = ({
-	size, text, icon, offscreen, disabled, onClick, tag = 'button', ...restProps
+	size, text, icon, offscreen, disabled, addClass, onClick, tag = 'button', ...restProps
 }) => {
 	const renderIcon = (typeof icon === 'string') ? (<span className={styles.icon} style={{backgroundImage: `url("/assets/icons/icon_${icon}.svg")`}}></span>) : icon;
 	const baseClass = [
@@ -45,7 +46,7 @@ const Btn: React.FC<ButtonProps> = ({
 				href={disabled ? undefined : href}
 				{...anchorProps}
 			>
-				{text && <span className={styles.text}>{text}</span>}
+				{text && <span className={[styles.text, addClass].join(' ')}>{text}</span>}
 				{icon && renderIcon}
 				{offscreen && <span className="offscreen">{offscreen}</span>}
 			</a>
@@ -62,7 +63,7 @@ const Btn: React.FC<ButtonProps> = ({
 			onClick={onClick}
 			{...buttonProps}
 		>
-			{text && <span className={styles.text}>{text}</span>}
+			{text && <span className={[styles.text, addClass].join(' ')}>{text}</span>}
 			{icon && renderIcon}
 			{offscreen && <span className="offscreen">{offscreen}</span>}
 		</button>

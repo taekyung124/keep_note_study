@@ -28,6 +28,13 @@ const NoteCard: React.FC<NoteCardProps> = ({ note: initialNote }) => {
 	const deleteNote = useNoteStore((state) => state.deleteNote);
 	const updateNote = useNoteStore((state) => state.updateNote);
 
+	const [isFixed, setIsFixed] = useState(false);
+
+	// 메모 고정 핸들러
+	const handleFixToggle = () => {
+		setIsFixed(!isFixed);
+	}
+
 	// 삭제 버튼 핸들러
 	const handleDelete = async () => {
 		if (window.confirm(`"${note.title}" 메모를 정말 삭제하시겠습니까?`)) {
@@ -156,6 +163,9 @@ const NoteCard: React.FC<NoteCardProps> = ({ note: initialNote }) => {
 			<div className={styles.hoverBox}>
 				<ul className={styles.editList}>
 					<li className={styles.item}>
+						<Btn type={'button'} size={'lg'} icon={isFixed ? 'fix_active' : 'fix'} offscreen={isFixed ? '메모고정' : '고정해제'} onClick={handleFixToggle} />
+					</li>
+					<li className={styles.item}>
 						<Btn type={'button'} size={'lg'} icon={'palette'} offscreen={'컬러선택'} onClick={handleColorChipToggle} />
 						{isColorListVisible &&
 							<div className={styles.colorList}>
@@ -179,7 +189,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ note: initialNote }) => {
 					<li className={styles.item}>
 						<Btn type={'button'} size={'lg'} icon={'more'} offscreen={'더보기'} onClick={handelMenuToggle} />
 						{isMenuVisible &&
-							<Dropdown menus={[{label: '그림 추가'}, { label: '사본 만들기'}]} />
+							<Dropdown menus={[{label: '그림 추가'}, {label: '사본 만들기'}]} />
 						}
 					</li>
 					<li className={styles.item}>

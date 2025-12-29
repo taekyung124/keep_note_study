@@ -22,7 +22,7 @@ a, button {
 
 	.text {
 		display: inline-block;
-		color: variables.$colorDarkGray;
+		color: variables.$colorBlack;
 		vertical-align: top;
 		text-align: center;
 	}
@@ -103,6 +103,6 @@ a, button {
 
 	// disabled
 	&[disabled], &[aria-disabled=true], &.disabled {
-		opacity: 0.6;
+		opacity: 0.4;
 	}
 }
