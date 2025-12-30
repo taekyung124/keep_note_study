@@ -91,7 +91,7 @@ mock.onDelete(/\/notes\/\d+/).reply((config) => {
 // 이미지 추가
 mock.onPost(/\/notes\/\d+\/upload-image/).reply((config) => {
 	let notes = getNotesFromStorage();
-	const id = Number(config.url!.split("/")[2]); // URL: /notes/ID/upload-image
+	const id = Number(config.url!.split("/")[2]);
 
 	const tempImageUrl = `https://picsum.photos/400/200?noteId=${id}&t=${Date.now()}`;
 

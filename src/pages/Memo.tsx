@@ -3,8 +3,9 @@ import { useNoteStore } from "../store/noteStore";
 import {Note} from "../types/note";
 import NoteCard from "../components/molecules/noteCard/NoteCard";
 import NoteForm from "../components/molecules/noteForm/NoteForm";
-import SearchForm from "../components/molecules/searchForm/SearchForm";
 import SearchFilter from "../components/molecules/searchFilter/SearchFilter";
+import Header from "../components/organisms/header/Header";
+import Navigation from "../components/organisms/navigation/Navigation";
 
 export default function Memo() {
 	const { notes, fetchNotes, loading, error, _hasHydrated } = useNoteStore();
@@ -24,8 +25,9 @@ export default function Memo() {
 	const normalNotes = notes.filter(note => !note.isFixed);
 
 	return (
-		<div>
-			<SearchForm />
+		<div style={{ position: "relative" }}>
+			<Header title={'Keep'} />
+			<Navigation />
 			<SearchFilter notes={notes} />
 			<NoteForm />
 			<h2>고정 메모 리스트</h2>
