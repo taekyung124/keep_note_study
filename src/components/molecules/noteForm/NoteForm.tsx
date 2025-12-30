@@ -15,6 +15,7 @@ interface FormNoteState {
 	content: string;
 	color: Color;
 	imageUrls?: string[];
+	isFixed?: boolean;
 }
 
 const initialFormNote: FormNoteState = {
@@ -22,13 +23,14 @@ const initialFormNote: FormNoteState = {
 	content: "",
 	color: Color.TRANSPARENT,
 	imageUrls: [],
+	isFixed: false,
 };
 
 const NoteForm: React.FC = () => {
 	const addNote = useNoteStore((state) => state.addNote);
 
 	const [formNote, setFormNote] = useState<FormNoteState>(initialFormNote);
-	const { title, content, color, imageUrls } = formNote;
+	const { title, content, color, imageUrls, isFixed } = formNote;
 
 	const availableColors: Color[] = Object.values(Color);
 	const [isColorListVisible, setIsColorListVisible] = useState(false);
@@ -52,6 +54,7 @@ const NoteForm: React.FC = () => {
 			content: content.trim(),
 			color: color,
 			imageUrls: imageUrls && imageUrls.length > 0 ? imageUrls : undefined,
+			isFixed: isFixed,
 		};
 
 		try {
@@ -63,11 +66,9 @@ const NoteForm: React.FC = () => {
 		}
 	}
 
-	const [isFixed, setIsFixed] = useState(false);
-
 	// 메모 고정 핸들러
 	const handleFixToggle = () => {
-		setIsFixed(!isFixed);
+		setFormNote(prev => ({ ...prev, isFixed: !prev.isFixed }));
 	}
 
 	const handleColorChipToggle = () => {

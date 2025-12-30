@@ -46,12 +46,18 @@ const noteStoreCreator: StateCreator<NoteState> = (set, get) => ({
 		}
 	},
 
-	updateNote: (id, updateData) => {
-		set((state) => ({
-			notes: state.notes.map((note) =>
-				note.id === id ? { ...note, ...updateData } : note
-			),
-		}));
+	updateNote: async (id, updateData) => {
+		try {
+			const res = await axios.patch<Note>(`/notes/${id}`, updateData);
+
+			set((state) => ({
+				notes: state.notes.map((note) =>
+					note.id === id ? res.data : note
+				),
+			}));
+		} catch (err) {
+			console.error('메모 업데이트 실패', err);
+		}
 	},
 });
 

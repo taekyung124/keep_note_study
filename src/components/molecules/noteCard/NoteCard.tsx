@@ -28,12 +28,9 @@ const NoteCard: React.FC<NoteCardProps> = ({ note: initialNote }) => {
 	const deleteNote = useNoteStore((state) => state.deleteNote);
 	const updateNote = useNoteStore((state) => state.updateNote);
 
-	const [isFixed, setIsFixed] = useState(false);
-
-	// 메모 고정 핸들러
 	const handleFixToggle = () => {
-		setIsFixed(!isFixed);
-	}
+		updateNote(note.id, { isFixed: !note.isFixed });
+	};
 
 	// 삭제 버튼 핸들러
 	const handleDelete = async () => {
@@ -163,7 +160,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ note: initialNote }) => {
 			<div className={styles.hoverBox}>
 				<ul className={styles.editList}>
 					<li className={styles.item}>
-						<Btn type={'button'} size={'lg'} icon={isFixed ? 'fix_active' : 'fix'} offscreen={isFixed ? '메모고정' : '고정해제'} onClick={handleFixToggle} />
+						<Btn type={'button'} size={'lg'} icon={note.isFixed ? 'fix_active' : 'fix'} offscreen={note.isFixed ? '고정' : '고정해제'} onClick={handleFixToggle} />
 					</li>
 					<li className={styles.item}>
 						<Btn type={'button'} size={'lg'} icon={'palette'} offscreen={'컬러선택'} onClick={handleColorChipToggle} />
