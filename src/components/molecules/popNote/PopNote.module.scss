@@ -1,0 +1,38 @@
+@use 'sass:map';
+@use '../../../styles/abstracts/variables';
+@use '../../../styles/abstracts/mixins';
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+
+	.popNote {
+		width: 100%;
+		max-width: 600px;
+		border-radius: 8px;
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+		> form {
+			margin: 0;
+
+			input {
+				font-size: 20px !important;
+				line-height: 28px !important;
+				font-weight: 500 !important;
+				color: variables.$colorBlack !important;
+			}
+			textarea {
+				min-height: 100px;
+				color: variables.$colorBlack !important;
+			}
+		}
+	}
+}

@@ -13,16 +13,10 @@ import Dropdown from "../dropdown/Dropdown";
 
 interface NoteCardProps {
 	note: Note;
+	onEditClick: (note: Note) => void;
 }
 
-const NoteCard: React.FC<NoteCardProps> = ({ note: initialNote }) => {
-	const [note, setNote] = useState<Note>(() => ({
-		...initialNote,
-		color: initialNote.color && Object.values(Color).includes(initialNote.color as Color)
-			? initialNote.color
-			: Color.TRANSPARENT,
-		imageUrls: initialNote.imageUrls || [],
-	}));
+const NoteCard: React.FC<NoteCardProps> = ({ note, onEditClick }) => {
 	const availableColors: Color[] = Object.values(Color);
 
 	const deleteNote = useNoteStore((state) => state.deleteNote);
@@ -54,18 +48,10 @@ const NoteCard: React.FC<NoteCardProps> = ({ note: initialNote }) => {
 
 	// 컬러 변경 핸들러
 	const handleColorChange = async (newColor: Color) => {
-		if (newColor === note.color) {
-			return;
-		}
+		if (newColor === note.color) return;
 
 		try {
-			const response = await axios.patch(`/notes/${note.id}`, {
-				color: newColor
-			});
-
-			const updatedNote: Note = response.data;
-
-			setNote(updatedNote);
+			await axios.patch(`/notes/${note.id}`, { color: newColor });
 			updateNote(note.id, { color: newColor });
 
 			console.log(`메모 ${note.id}의 색상이 ${newColor}로 변경되었습니다.`);
@@ -73,19 +59,13 @@ const NoteCard: React.FC<NoteCardProps> = ({ note: initialNote }) => {
 		} catch (error) {
 			console.error("메모 색상 업데이트 실패:", error);
 		}
-
 		setIsColorListVisible(false);
 	};
 
 	// 이미지 업로드 핸들러
 	const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-		console.log("--- handleImageUpload 호출됨 ---");
-
 		const file = event.target.files?.[0];
-		if (!file) {
-			console.log("파일이 선택되지 않았거나 취소됨");
-			return;
-		}
+		if (!file) return;
 
 		console.log("파일 선택됨:", file.name);
 
@@ -94,12 +74,10 @@ const NoteCard: React.FC<NoteCardProps> = ({ note: initialNote }) => {
 
 		reader.onloadend = () => {
 			const previewUrl = reader.result as string;
-
-			setNote(prevNote => ({
-				...prevNote,
-				imageUrls: [...(prevNote.imageUrls || []), previewUrl]
-			}));
-			console.log("로컬 이미지 미리보기 URL 생성 및 추가 완료.");
+			updateNote(note.id, {
+				...note,
+				imageUrls: [...(note.imageUrls || []), previewUrl]
+			});
 		};
 		reader.readAsDataURL(file);
 
@@ -108,13 +86,9 @@ const NoteCard: React.FC<NoteCardProps> = ({ note: initialNote }) => {
 
 		try {
 			const response = await axios.post(`/notes/${note.id}/upload-image`, formData);
-
 			const updatedNote: Note = response.data; // 서버에서 받은 최종 Note 객체
 
-			setNote(updatedNote);
 			updateNote(note.id, updatedNote);
-
-			console.log("이미지 업로드 성공 및 최종 URL 저장:", updatedNote.imageUrls);
 			alert('이미지가 성공적으로 업로드되었습니다.');
 
 		} catch (error) {
@@ -122,10 +96,10 @@ const NoteCard: React.FC<NoteCardProps> = ({ note: initialNote }) => {
 			alert('이미지 업로드에 실패했습니다. 마지막 미리보기 이미지를 제거합니다.');
 
 			// 업로드 실패 시 마지막으로 추가된 미리보기 이미지 제거
-			setNote(prevNote => ({
-				...prevNote,
-				imageUrls: (prevNote.imageUrls || []).slice(0, -1)
-			}));
+			updateNote(note.id, {
+				...note,
+				imageUrls: (note.imageUrls || []).slice(0, -1)
+			});
 		}
 	};
 
@@ -156,7 +130,6 @@ const NoteCard: React.FC<NoteCardProps> = ({ note: initialNote }) => {
 			)}
 			<h3 className={styles.title}>{note.title}</h3>
 			<p className={styles.text}>{note.content}</p>
-
 			<div className={styles.hoverBox}>
 				<ul className={styles.editList}>
 					<li className={styles.item}>
@@ -194,6 +167,10 @@ const NoteCard: React.FC<NoteCardProps> = ({ note: initialNote }) => {
 					</li>
 				</ul>
 			</div>
+
+			<button className={styles.btnLink} onClick={() => onEditClick(note)}>
+				<span className="offscreen">메모 편집</span>
+			</button>
 		</div>
 	);
 };

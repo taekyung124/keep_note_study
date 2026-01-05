@@ -4,23 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2591737d-e343-49d5-81a7-1c2d8263f7df" name="Changes" comment="- button 컴포넌트 추가&#10;- 아이콘 이미지 저장&#10;- FileUpload 컴포넌트 작업중&#10;- 이미지 추가 시 임시 이미지 나오도록 처리">
-      <change afterPath="$PROJECT_DIR$/src/components/molecules/dropdown/Dropdown.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/molecules/dropdown/Dropdown.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/molecules/noteForm/NoteForm.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/molecules/searchForm/SearchForm.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/molecules/searchForm/SearchForm.tsx" afterDir="false" />
+    <list default="true" id="2591737d-e343-49d5-81a7-1c2d8263f7df" name="Changes" comment="- 헤더, 내비게이션 컴포넌트 추가(기능 추가예정)">
+      <change afterPath="$PROJECT_DIR$/src/components/molecules/popNote/PopNote.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/molecules/popNote/PopNote.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/mock/notes.mock.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mock/notes.mock.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/atoms/button/Button.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/atoms/button/Button.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/atoms/button/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/atoms/button/Button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/molecules/dropdown/Dropdown.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/dropdown/Dropdown.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/molecules/noteCard/NoteCard.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/noteCard/NoteCard.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/molecules/noteCard/NoteCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/noteCard/NoteCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/molecules/noteForm/NoteForm.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/noteForm/NoteForm.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/molecules/noteForm/NoteForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/noteForm/NoteForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Memo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Memo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/abstracts/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/abstracts/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/common/_utilities.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/common/_utilities.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/note.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/note.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/color.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/color.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,34 +24,39 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="36MCn6w0kQutzwJdliNFBOjmqLu" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/_project/_si",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.start.executor": "Run",
-    "settings.editor.selected.configurable": "vcs.Subversion",
-    "ts.external.directory.path": "D:\\_project\\_study\\keep_note_study\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/_project/_study/keep_note_study/src/components/organisms&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Subversion&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\_project\\_study\\keep_note_study\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\_project\_study\keep_note_study\src\components\organisms" />
+      <recent name="D:\_project\_study\keep_note_study\public\assets\icons" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\_project\_study\keep_note_study\public\assets\images" />
       <recent name="D:\_project\_study\keep_note_study\public\assets\icons" />
       <recent name="D:\_project\_study\keep_note_study\src\components\molecules" />
       <recent name="D:\_project\_study\keep_note_study\src\api\mock" />
@@ -98,7 +97,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1764807216213</updated>
-      <workItem from="1764807217382" duration="136242000" />
+      <workItem from="1764807217382" duration="138662000" />
+      <workItem from="1766971841913" duration="39735000" />
+      <workItem from="1767571144986" duration="11682000" />
     </task>
     <task id="LOCAL-00001" summary="- react, typescript 프로젝트 세팅&#10;- axios, axios-mock-adapter, zustand 설치&#10;- 메모 카드 등록 및 삭제 테스트">
       <option name="closed" value="true" />
@@ -132,7 +133,39 @@
       <option name="project" value="LOCAL" />
       <updated>1765270359625</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="- 작업 커밋">
+      <option name="closed" value="true" />
+      <created>1765844280734</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1765844280734</updated>
+    </task>
+    <task id="LOCAL-00006" summary="- 작업 커밋">
+      <option name="closed" value="true" />
+      <created>1766998118161</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1766998118161</updated>
+    </task>
+    <task id="LOCAL-00007" summary="- 메모 고정/해제 기능 추가">
+      <option name="closed" value="true" />
+      <created>1767069800795</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1767069800795</updated>
+    </task>
+    <task id="LOCAL-00008" summary="- 헤더, 내비게이션 컴포넌트 추가(기능 추가예정)">
+      <option name="closed" value="true" />
+      <created>1767085076304</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1767085076304</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,6 +175,9 @@
     <MESSAGE value="- react, typescript 프로젝트 세팅&#10;- axios, axios-mock-adapter, zustand 설치&#10;- 메모 카드 등록 및 삭제 테스트" />
     <MESSAGE value="- colorchip 테스트&#10;- mixin, variables 추가" />
     <MESSAGE value="- button 컴포넌트 추가&#10;- 아이콘 이미지 저장&#10;- FileUpload 컴포넌트 작업중&#10;- 이미지 추가 시 임시 이미지 나오도록 처리" />
-    <option name="LAST_COMMIT_MESSAGE" value="- button 컴포넌트 추가&#10;- 아이콘 이미지 저장&#10;- FileUpload 컴포넌트 작업중&#10;- 이미지 추가 시 임시 이미지 나오도록 처리" />
+    <MESSAGE value="- 작업 커밋" />
+    <MESSAGE value="- 메모 고정/해제 기능 추가" />
+    <MESSAGE value="- 헤더, 내비게이션 컴포넌트 추가(기능 추가예정)" />
+    <option name="LAST_COMMIT_MESSAGE" value="- 헤더, 내비게이션 컴포넌트 추가(기능 추가예정)" />
   </component>
 </project>

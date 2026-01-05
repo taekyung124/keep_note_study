@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNoteStore } from '../../../store/noteStore';
-import { NewNote } from '../../../types/note';
+import { Note, NewNote } from '../../../types/note';
 import { Color } from '../../../types/color';
 
 import styles from './NoteForm.module.scss';
@@ -9,6 +9,11 @@ import Btn from '../../atoms/button/Button';
 import ColorChip from "../../atoms/colorChip/ColorChip";
 import Dropdown from "../dropdown/Dropdown";
 import FileUpload from "../../atoms/fileUpload/FileUpload";
+
+interface NoteFormProps {
+	initialData?: Note;
+	onSuccess?: () => void;
+}
 
 interface FormNoteState {
 	title: string;
@@ -26,45 +31,80 @@ const initialFormNote: FormNoteState = {
 	isFixed: false,
 };
 
-const NoteForm: React.FC = () => {
+const NoteForm: React.FC<NoteFormProps> = ({initialData, onSuccess}) => {
 	const addNote = useNoteStore((state) => state.addNote);
+	const updateNote = useNoteStore((state) => state.updateNote);
 
-	const [formNote, setFormNote] = useState<FormNoteState>(initialFormNote);
+	const convertToFormState = (data: Note): FormNoteState => ({
+		title: data.title,
+		content: data.content,
+		color: data.color as Color,
+		imageUrls: data.imageUrls || [],
+		isFixed: data.isFixed || false,
+	})
+
+	const [formNote, setFormNote] = useState<FormNoteState>(
+		initialData ? convertToFormState(initialData) : initialFormNote
+	);
 	const { title, content, color, imageUrls, isFixed } = formNote;
+
+	React.useEffect(() => {
+		if (initialData) {
+			setFormNote(convertToFormState(initialData));
+		}
+	}, [initialData]);
 
 	const availableColors: Color[] = Object.values(Color);
 	const [isColorListVisible, setIsColorListVisible] = useState(false);
 	const [isMenuVisible, setIsMenuVisible] = useState(false);
 
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-		const { name, value } = e.target;
-		setFormNote(prev => ({ ...prev, [name]: value }));
-	};
-
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+		const { title, content, color, imageUrls, isFixed } = formNote;
 
 		if (!title.trim() || !content.trim()) {
 			alert("제목과 내용을 모두 입력해 주세요.");
 			return;
 		}
 
-		const newNote: NewNote = {
-			title: title.trim(),
-			content: content.trim(),
-			color: color,
-			imageUrls: imageUrls && imageUrls.length > 0 ? imageUrls : undefined,
-			isFixed: isFixed,
-		};
-
 		try {
-			await addNote(newNote);
-			setFormNote(initialFormNote);
+			if (initialData) {
+				// 수정 모드 (기존 데이터가 있을 때)
+				await updateNote(initialData.id, {
+					title: title.trim(),
+					content: content.trim(),
+					color,
+					imageUrls,
+					isFixed,
+				});
+				console.log("메모 수정 완료");
+			} else {
+				// 추가 모드 (신규 작성일 때)
+				const newNote: NewNote = {
+					title: title.trim(),
+					content: content.trim(),
+					color,
+					imageUrls: imageUrls && imageUrls.length > 0 ? imageUrls : undefined,
+					isFixed: isFixed,
+				};
+				await addNote(newNote);
+				setFormNote(initialFormNote);
+				console.log("메모 추가 완료");
+			}
+
+			// 성공 시 팝업 닫기
+			if (onSuccess) onSuccess();
+
 		} catch (error) {
-			console.error("메모 추가 실패:", error);
-			alert("메모 추가에 실패했습니다.");
+			console.error("저장 실패:", error);
+			alert("저장에 실패했습니다.");
 		}
-	}
+	};
+
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+		const { name, value } = e.target;
+		setFormNote(prev => ({ ...prev, [name]: value }));
+	};
 
 	// 메모 고정 핸들러
 	const handleFixToggle = () => {
@@ -178,7 +218,7 @@ const NoteForm: React.FC = () => {
 					</li>
 				</ul>
 				<Btn
-					type={'submit'} size={'md'} text={'메모 추가'}
+					type={'submit'} size={'md'} text={initialData ? '저장' : '메모 추가'}
 					disabled={!title.trim() || !content.trim()}
 				/>
 			</div>

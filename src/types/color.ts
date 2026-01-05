@@ -1,5 +1,5 @@
 export enum Color {
-	TRANSPARENT = "transparent", // default
+	TRANSPARENT = "#ffffff", // default
 	SALMON = "#f8d7da",      // .bgSalmon
 	ORANGE = "#ffe08c",      // .bgOrange
 	YELLOW = "#fff9c4",      // .bgYellow

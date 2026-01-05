@@ -38,6 +38,7 @@
 
 	.title {
 		@include mixins.font_size_2xl;
+		margin-bottom: 8px;
 	}
 	.text {
 		@include mixins.font_size_md;
@@ -49,12 +50,14 @@
 		.editList {
 			display: flex;
 			gap: 6px;
+
 			.item {
 				position: relative;
 				padding: 5px;
 
 				.colorList {
 					position: absolute;
+					z-index: 1;
 					left: 0;
 					top: 30px;
 					display: flex;
@@ -81,5 +84,15 @@
 			padding: 0 15px;
 			margin-bottom: 8px;
 		}
+	}
+
+	.btnLink {
+		z-index: 10;
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: block;
+		width: 100%;
+		height: calc(100% - 34px);
 	}
 }

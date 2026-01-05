@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import {useEffect, useState} from "react";
 import { useNoteStore } from "../store/noteStore";
 import {Note} from "../types/note";
 import NoteCard from "../components/molecules/noteCard/NoteCard";
@@ -6,9 +6,13 @@ import NoteForm from "../components/molecules/noteForm/NoteForm";
 import SearchFilter from "../components/molecules/searchFilter/SearchFilter";
 import Header from "../components/organisms/header/Header";
 import Navigation from "../components/organisms/navigation/Navigation";
+import PopNote from "../components/molecules/popNote/PopNote";
 
 export default function Memo() {
 	const { notes, fetchNotes, loading, error, _hasHydrated } = useNoteStore();
+
+	// 편집중인 메모 상태
+	const [editingNote, setEditingNote] = useState<Note | null>(null);
 
 	useEffect(() => {
 		if (_hasHydrated) {
@@ -24,8 +28,16 @@ export default function Memo() {
 	const fixedNotes = notes.filter(note => note.isFixed);
 	const normalNotes = notes.filter(note => !note.isFixed);
 
+	const handleEditClick = (note: Note) => {
+		setEditingNote(note);
+	}
+
+	const handleClosePopNote = () => {
+		setEditingNote(null)
+	}
+
 	return (
-		<div style={{ position: "relative" }}>
+		<div style={{ position: "relative", paddingTop: "70px" }}>
 			<Header title={'Keep'} />
 			<Navigation />
 			<SearchFilter notes={notes} />
@@ -47,7 +59,7 @@ export default function Memo() {
 					justifyContent: "start",
 				}}>
 					{fixedNotes.map((note) => (
-						<NoteCard key={note.id} note={note} />
+						<NoteCard key={note.id} note={note} onEditClick={handleEditClick} />
 					))}
 				</div>
 			)}
@@ -69,8 +81,14 @@ export default function Memo() {
 					alignItems: "start",
 					justifyContent: "start",
 				}}>
-					{normalNotes.map((note: Note) => (<NoteCard key={note.id} note={note} />))}
+					{normalNotes.map((note: Note) => (<NoteCard key={note.id} note={note} onEditClick={handleEditClick} />))}
 				</div>
+			)};
+			{editingNote && (
+				<PopNote
+					note={editingNote}
+					onClose={handleClosePopNote}
+				/>
 			)}
 		</div>
 	);
