@@ -23,6 +23,15 @@
 		> form {
 			margin: 0;
 
+			> div:nth-child(2) {
+				max-height: 500px;
+				overflow-y: auto;
+
+				&::-webkit-scrollbar {
+					display: none;
+				}
+			}
+
 			input {
 				font-size: 20px !important;
 				line-height: 28px !important;
@@ -30,7 +39,7 @@
 				color: variables.$colorBlack !important;
 			}
 			textarea {
-				min-height: 100px;
+				min-height: 100px !important;
 				color: variables.$colorBlack !important;
 			}
 		}

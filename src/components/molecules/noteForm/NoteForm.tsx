@@ -142,6 +142,13 @@ const NoteForm: React.FC<NoteFormProps> = ({initialData, onSuccess}) => {
 		reader.readAsDataURL(file);
 	};
 
+	const handleDeleteImage = (indexToDelete: number) => {
+		setFormNote(prevNote => ({
+			...prevNote,
+			imageUrls: prevNote.imageUrls?.filter((_, index) => index !== indexToDelete) || []
+		}));
+	};
+
 	const handelMenuToggle = () => {
 		setIsMenuVisible(prev => !prev);
 	}
@@ -162,15 +169,23 @@ const NoteForm: React.FC<NoteFormProps> = ({initialData, onSuccess}) => {
 					/>
 				</div>
 
-				{imageUrls && imageUrls.length > 0 && (
+				{formNote.imageUrls && formNote.imageUrls.length > 0 && (
 					<div className={styles.imageContainer}>
-						{imageUrls.map((imageUrl, index) => (
-							<img
-								key={imageUrl.length > 50 ? index : imageUrl}
-								src={imageUrl}
-								alt={`${title} 이미지 ${index + 1}`}
-								className={styles.noteImage}
-							/>
+						{formNote.imageUrls.map((imageUrl, index) => (
+							<div className={styles.imgBox} key={`img-${index}`}>
+								<img
+									src={imageUrl}
+									alt={`${formNote.title} 이미지 ${index + 1}`}
+									className={styles.noteImage}
+								/>
+								<button
+									type="button"
+									className={styles.btnDelete}
+									onClick={() => handleDeleteImage(index)}
+								>
+									<span className="offscreen">이미지 삭제</span>
+								</button>
+							</div>
 						))}
 					</div>
 				)}

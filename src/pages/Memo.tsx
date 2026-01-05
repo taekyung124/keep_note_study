@@ -7,6 +7,7 @@ import SearchFilter from "../components/molecules/searchFilter/SearchFilter";
 import Header from "../components/organisms/header/Header";
 import Navigation from "../components/organisms/navigation/Navigation";
 import PopNote from "../components/molecules/popNote/PopNote";
+import MasonryList from "../components/molecules/masonryList/MasonryList";
 
 export default function Memo() {
 	const { notes, fetchNotes, loading, error, _hasHydrated } = useNoteStore();
@@ -48,7 +49,12 @@ export default function Memo() {
 			) : fixedNotes.length === 0 ? (
 				<p>고정된 메모가 없습니다. 새로 작성해 보세요.</p>
 			) : (
-				<div style={{
+				<MasonryList>
+					{fixedNotes.map((note) => (
+						<NoteCard key={note.id} note={note} onEditClick={handleEditClick} />
+					))}
+				</MasonryList>
+				/*<div style={{
 					position: "relative",
 					display: "grid",
 					gridTemplateColumns: "repeat(auto-fit, minmax(300px, max-content))",
@@ -58,10 +64,8 @@ export default function Memo() {
 					alignItems: "start",
 					justifyContent: "start",
 				}}>
-					{fixedNotes.map((note) => (
-						<NoteCard key={note.id} note={note} onEditClick={handleEditClick} />
-					))}
-				</div>
+
+				</div>*/
 			)}
 
 			<h2>메모 리스트</h2>
@@ -71,7 +75,10 @@ export default function Memo() {
 			) : notes.length === 0 ? (
 				<p>메모가 없습니다. 새로 작성해 보세요.</p>
 			) : (
-				<div style={{
+				<MasonryList>
+					{normalNotes.map((note: Note) => (<NoteCard key={note.id} note={note} onEditClick={handleEditClick} />))}
+				</MasonryList>
+				/*<div style={{
 					position: "relative",
 					display: "grid",
 					gridTemplateColumns: "repeat(auto-fit, minmax(300px, max-content))",
@@ -81,8 +88,7 @@ export default function Memo() {
 					alignItems: "start",
 					justifyContent: "start",
 				}}>
-					{normalNotes.map((note: Note) => (<NoteCard key={note.id} note={note} onEditClick={handleEditClick} />))}
-				</div>
+				</div>*/
 			)};
 			{editingNote && (
 				<PopNote
