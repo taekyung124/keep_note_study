@@ -31,7 +31,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ notes }) => {
 		return {
 			text: notes.some((note: Note) => note.content && note.content.trim().length > 0),
 			image: notes.some((note: Note) => note.imageUrls && note.imageUrls.length > 0),
-			fixed: false, // 예: notes.some((note: Note) => note.isPinned)
+			fixed: notes.some((note: Note) => note.isFixed),
 			canvas: false,  // 예: notes.some((note: Note) => note.hasCanvas)
 		};
 	}, [notes]);
@@ -89,7 +89,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ notes }) => {
 						<Btn
 							type={'button'}
 							size={'md'}
-							text={isOpenContent ? '접기' : '더보기'}
+							text={isOpenContent ? '간략히' : '더보기'}
 							addClass={'fcOrange'}
 							onClick={handleOverflowToggle}
 						/>

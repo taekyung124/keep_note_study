@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import axios from '../../../api/axiosInstance';
 import { useNoteStore } from '../../../store/noteStore';
 import { Note, NewNote } from '../../../types/note';
 import { Color } from '../../../types/color';
@@ -21,6 +22,7 @@ interface FormNoteState {
 	color: Color;
 	imageUrls?: string[];
 	isFixed?: boolean;
+	isKeep?: boolean;
 }
 
 const initialFormNote: FormNoteState = {
@@ -29,6 +31,7 @@ const initialFormNote: FormNoteState = {
 	color: Color.TRANSPARENT,
 	imageUrls: [],
 	isFixed: false,
+	isKeep: false,
 };
 
 const NoteForm: React.FC<NoteFormProps> = ({initialData, onSuccess}) => {
@@ -41,12 +44,13 @@ const NoteForm: React.FC<NoteFormProps> = ({initialData, onSuccess}) => {
 		color: data.color as Color,
 		imageUrls: data.imageUrls || [],
 		isFixed: data.isFixed || false,
+		isKeep: data.isKeep || false,
 	})
 
 	const [formNote, setFormNote] = useState<FormNoteState>(
 		initialData ? convertToFormState(initialData) : initialFormNote
 	);
-	const { title, content, color, imageUrls, isFixed } = formNote;
+	const { title, content, color, imageUrls, isFixed, isKeep } = formNote;
 
 	React.useEffect(() => {
 		if (initialData) {
@@ -60,7 +64,7 @@ const NoteForm: React.FC<NoteFormProps> = ({initialData, onSuccess}) => {
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		const { title, content, color, imageUrls, isFixed } = formNote;
+		const { title, content, color, imageUrls, isFixed, isKeep } = formNote;
 
 		if (!title.trim() || !content.trim()) {
 			alert("제목과 내용을 모두 입력해 주세요.");
@@ -76,6 +80,7 @@ const NoteForm: React.FC<NoteFormProps> = ({initialData, onSuccess}) => {
 					color,
 					imageUrls,
 					isFixed,
+					isKeep,
 				});
 				console.log("메모 수정 완료");
 			} else {
@@ -86,6 +91,7 @@ const NoteForm: React.FC<NoteFormProps> = ({initialData, onSuccess}) => {
 					color,
 					imageUrls: imageUrls && imageUrls.length > 0 ? imageUrls : undefined,
 					isFixed: isFixed,
+					isKeep: isKeep,
 				};
 				await addNote(newNote);
 				setFormNote(initialFormNote);
@@ -123,23 +129,39 @@ const NoteForm: React.FC<NoteFormProps> = ({initialData, onSuccess}) => {
 		setIsColorListVisible(false);
 	};
 
-	const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+	// 메모 보관 핸들러
+	const handleKeepToggle = () => {
+		setFormNote(prev => ({ ...prev, isKeep: !prev.isKeep }));
+	};
+
+
+	// 이미지 업로드 핸들러
+	const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
 		const file = event.target.files?.[0];
-		if (!file) {
+		if (!file) return;
+
+		if (!initialData) {
+			const previewUrl = URL.createObjectURL(file);
+			setFormNote(prev => ({
+				...prev,
+				imageUrls: [...(prev.imageUrls || []), previewUrl]
+			}));
 			return;
 		}
 
-		const reader = new FileReader();
+		const formData = new FormData();
+		formData.append('imageFile', file);
 
-		reader.onloadend = () => {
-			const previewUrl = reader.result as string;
+		try {
+			const response = await axios.post(`/notes/${initialData.id}/upload-image`, formData);
+			const updatedNote: Note = response.data;
 
-			setFormNote(prevNote => ({
-				...prevNote,
-				imageUrls: [...(prevNote.imageUrls || []), previewUrl]
-			}));
-		};
-		reader.readAsDataURL(file);
+			setFormNote(convertToFormState(updatedNote));
+			console.log("서버 업로드 완료");
+		} catch (error) {
+			console.error("업로드 실패:", error);
+			alert("이미지 서버 업로드에 실패했습니다.");
+		}
 	};
 
 	const handleDeleteImage = (indexToDelete: number) => {
@@ -223,7 +245,11 @@ const NoteForm: React.FC<NoteFormProps> = ({initialData, onSuccess}) => {
 					</li>
 
 					<li className={styles.item}>
-						<Btn type={'button'} size={'lg'} icon={'keep'} offscreen={'메모 보관'} />
+						<Btn type={'button'} size={'lg'}
+							 icon={isKeep ? 'keeped' : 'keep'}
+							 offscreen={isKeep? '보관 취소' : '메모 보관'}
+							 onClick={handleKeepToggle}
+						/>
 					</li>
 					<li className={styles.item}>
 						<Btn type={'button'} size={'lg'} icon={'more'} offscreen={'더보기'} onClick={handelMenuToggle} />

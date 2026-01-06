@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import { useNoteStore } from "../store/noteStore";
 import {Note} from "../types/note";
 
@@ -8,7 +8,7 @@ import MasonryList from "../components/molecules/masonryList/MasonryList";
 import NoteCard from "../components/molecules/noteCard/NoteCard";
 import PopNote from "../components/molecules/popNote/PopNote";
 
-export default function Search(){
+const Search: React.FC = () => {
 	const { notes, fetchNotes, loading, error, _hasHydrated } = useNoteStore();
 
 	// 편집중인 메모 상태
@@ -71,4 +71,5 @@ export default function Search(){
 			)}
 		</Layout>
 	)
-}
+};
+export default Search;

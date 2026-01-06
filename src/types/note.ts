@@ -5,6 +5,7 @@ export interface Note {
 	color: string;
 	imageUrls?: string[] | null;
 	isFixed?: boolean;
+	isKeep?: boolean;
 }
 
 export type NewNote = Omit<Note, 'id'>;

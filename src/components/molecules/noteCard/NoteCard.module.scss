@@ -74,6 +74,23 @@
 					border: 1px solid variables.$colorLightGray;
 					background-color: variables.$colorWhite;
 				}
+
+				&:hover {
+					position: relative;
+					&:before {
+						content: '';
+						display: block;
+						position: absolute;
+						z-index: -1;
+						top: 0;
+						left: 0;
+						width: 100%;
+						height: 100%;
+						border-radius: 50%;
+						overflow: hidden;
+						background: rgba(95,99,104,0.157);
+					}
+				}
 			}
 		}
 	}

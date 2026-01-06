@@ -67,39 +67,19 @@ const NoteCard: React.FC<NoteCardProps> = ({ note, onEditClick }) => {
 		const file = event.target.files?.[0];
 		if (!file) return;
 
-		console.log("파일 선택됨:", file.name);
-
-		// 로컬 이미지 미리보기
-		const reader = new FileReader();
-
-		reader.onloadend = () => {
-			const previewUrl = reader.result as string;
-			updateNote(note.id, {
-				...note,
-				imageUrls: [...(note.imageUrls || []), previewUrl]
-			});
-		};
-		reader.readAsDataURL(file);
-
 		const formData = new FormData();
 		formData.append('imageFile', file);
 
 		try {
+			// 1. 로컬 미리보기를 하지 않고 바로 서버로 전송
 			const response = await axios.post(`/notes/${note.id}/upload-image`, formData);
-			const updatedNote: Note = response.data; // 서버에서 받은 최종 Note 객체
 
+			// 2. 서버가 준 짧은 주소로 스토어 업데이트 (딱 한 번만 실행)
+			const updatedNote: Note = response.data;
 			updateNote(note.id, updatedNote);
-			alert('이미지가 성공적으로 업로드되었습니다.');
 
 		} catch (error) {
-			console.error("이미지 업로드 실패:", error);
-			alert('이미지 업로드에 실패했습니다. 마지막 미리보기 이미지를 제거합니다.');
-
-			// 업로드 실패 시 마지막으로 추가된 미리보기 이미지 제거
-			updateNote(note.id, {
-				...note,
-				imageUrls: (note.imageUrls || []).slice(0, -1)
-			});
+			alert('업로드 실패');
 		}
 	};
 
@@ -109,6 +89,17 @@ const NoteCard: React.FC<NoteCardProps> = ({ note, onEditClick }) => {
 	const handelMenuToggle = () => {
 		setIsMenuVisible(prev => !prev);
 	}
+
+	// 메모 보관 핸들러
+	const handleKeepToggle = async () => {
+		try {
+			const newKeepStatus = !note.isKeep;
+			await axios.patch(`/notes/${note.id}`, { isKeep: newKeepStatus });
+			updateNote(note.id, { isKeep: newKeepStatus });
+		} catch (error) {
+			console.error("보관 처리 실패:", error);
+		}
+	};
 
 	return (
 		<div className={styles.cardWrap}
@@ -154,7 +145,11 @@ const NoteCard: React.FC<NoteCardProps> = ({ note, onEditClick }) => {
 						<FileUpload onFileChange={handleImageUpload} />
 					</li>
 					<li className={styles.item}>
-						<Btn type={'button'} size={'lg'} icon={'keep'} offscreen={'메모 보관'} />
+						<Btn type={'button'} size={'lg'} 
+							 icon={note.isKeep ? 'keeped' : 'keep'} 
+							 offscreen={note.isKeep ? '보관 취소' : '메모 보관'}
+							 onClick={handleKeepToggle}
+						/>
 					</li>
 					<li className={styles.item}>
 						<Btn type={'button'} size={'lg'} icon={'more'} offscreen={'더보기'} onClick={handelMenuToggle} />

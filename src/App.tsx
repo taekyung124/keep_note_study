@@ -6,6 +6,7 @@ import Memo from "./pages/Memo";
 import Keep from "./pages/Keep";
 import Pin from "./pages/Pin";
 import Trash from "./pages/Trash";
+import Search from "./pages/Search";
 
 // 개발 환경(NODE_ENV !== 'production')에서만 Mock API 활성화
 if (process.env.NODE_ENV === 'development') {
@@ -25,6 +26,7 @@ function App() {
 				<Route path="/Pin" element={<Pin />} />
 				<Route path="/Keep" element={<Keep />} />
 				<Route path="/Trash" element={<Trash />} />
+				<Route path="/Search" element={<Search />} />
 			</Routes>
 		</BrowserRouter>
 	);

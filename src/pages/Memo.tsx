@@ -1,12 +1,12 @@
 import {useEffect, useState} from "react";
 import { useNoteStore } from "../store/noteStore";
 import {Note} from "../types/note";
+import Layout from "../components/templates/layout/Layout";
+import StatusNotice from "../components/molecules/statusNotice/StatusNotice";
+import MasonryList from "../components/molecules/masonryList/MasonryList";
 import NoteCard from "../components/molecules/noteCard/NoteCard";
 import NoteForm from "../components/molecules/noteForm/NoteForm";
-import SearchFilter from "../components/molecules/searchFilter/SearchFilter";
 import PopNote from "../components/molecules/popNote/PopNote";
-import MasonryList from "../components/molecules/masonryList/MasonryList";
-import Layout from "../components/templates/layout/Layout";
 
 export default function Memo() {
 	const { notes, fetchNotes, loading, error, _hasHydrated } = useNoteStore();
@@ -24,9 +24,12 @@ export default function Memo() {
 		return <div>로컬 저장소에서 데이터를 불러오는 중...</div>;
 	}
 
+	// 보관 메모 필터링
+	const activeNotes = notes.filter(note => !note.isKeep);
+
 	// 고정 메모 구분
-	const fixedNotes = notes.filter(note => note.isFixed);
-	const normalNotes = notes.filter(note => !note.isFixed);
+	const fixedNotes = activeNotes.filter(note => note.isFixed);
+	const normalNotes = activeNotes.filter(note => !note.isFixed);
 
 	const handleEditClick = (note: Note) => {
 		setEditingNote(note);
@@ -41,9 +44,9 @@ export default function Memo() {
 			<NoteForm />
 			<p className="title">고정 메모 리스트</p>
 			{loading ? (
-				<p>고정된 메모를 불러오는 중입니다...</p>
+				<StatusNotice loading={true} menu={'pin'} />
 			) : fixedNotes.length === 0 ? (
-				<p>고정된 메모가 없습니다. 새로 작성해 보세요.</p>
+				<StatusNotice loading={false} menu={'pin'} />
 			) : (
 				<MasonryList>
 					{fixedNotes.map((note) => (
@@ -55,9 +58,9 @@ export default function Memo() {
 			<p className="title">메모 리스트</p>
 			{error && <p style={{color: 'red'}}>오류 발생: {error}</p>}
 			{loading ? (
-				<p>메모를 불러오는 중입니다...</p>
+				<StatusNotice loading={true} menu={'memo'} />
 			) : notes.length === 0 ? (
-				<p>메모가 없습니다. 새로 작성해 보세요.</p>
+				<StatusNotice loading={false} menu={'memo'} />
 			) : (
 				<MasonryList>
 					{normalNotes.map((note: Note) => (<NoteCard key={note.id} note={note} onEditClick={handleEditClick} />))}
