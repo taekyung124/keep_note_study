@@ -79,7 +79,7 @@
 					background-color: variables.$colorWhiteGray;
 				}
 
-				&:active {
+				&:active, &.active {
 					background-color: variables.$bgYellow;
 				}
 			}

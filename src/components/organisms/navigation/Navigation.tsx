@@ -1,38 +1,35 @@
 import React from 'react';
+import { useLocation, Link } from 'react-router-dom';
 import styles from './Navigation.module.scss';
 
-interface NavigationProps {
-}
+const Navigation: React.FC = () => {
+	const location = useLocation();
 
-const Navigation: React.FC<NavigationProps> = ({
-}) => {
+	const menus = [
+		{ path: '/Memo', label: '메모', icon: styles.iconMemo },
+		{ path: '/Pin', label: '고정', icon: styles.iconPin },
+		{ path: '/Keep', label: '보관처리', icon: styles.iconKeep },
+		{ path: '/Trash', label: '휴지통', icon: styles.iconTrashcan },
+	];
+
 	return (
 		<div className={styles.navigation}>
 			<ul className={styles.menuList}>
-				<li className={styles.menuItem}>
-					<a href="javascript:void(0);" className={styles.linkMenu}>
-						<span className={styles.iconMemo}></span>
-						<span className={styles.menu}>메모</span>
-					</a>
-				</li>
-				<li className={styles.menuItem}>
-					<a href="javascript:void(0);" className={styles.linkMenu}>
-						<span className={styles.iconPin}></span>
-						<span className={styles.menu}>고정</span>
-					</a>
-				</li>
-				<li className={styles.menuItem}>
-					<a href="javascript:void(0);" className={styles.linkMenu}>
-						<span className={styles.iconKeep}></span>
-						<span className={styles.menu}>보관처리</span>
-					</a>
-				</li>
-				<li className={styles.menuItem}>
-					<a href="javascript:void(0);" className={styles.linkMenu}>
-						<span className={styles.iconTrashcan}></span>
-						<span className={styles.menu}>휴지통</span>
-					</a>
-				</li>
+				{menus.map((menu) => {
+					const isActive = location.pathname === menu.path;
+
+					return (
+						<li key={menu.path} className={styles.menuItem}>
+							<Link
+								to={menu.path}
+								className={`${styles.linkMenu} ${isActive ? styles.active : ''}`}
+							>
+								<span className={menu.icon}></span>
+								<span className={styles.menu}>{menu.label}</span>
+							</Link>
+						</li>
+					)
+				})}
 			</ul>
 		</div>
 	)

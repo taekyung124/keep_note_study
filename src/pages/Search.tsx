@@ -1,14 +1,14 @@
 import {useEffect, useState} from "react";
 import { useNoteStore } from "../store/noteStore";
 import {Note} from "../types/note";
-import NoteCard from "../components/molecules/noteCard/NoteCard";
-import NoteForm from "../components/molecules/noteForm/NoteForm";
-import SearchFilter from "../components/molecules/searchFilter/SearchFilter";
-import PopNote from "../components/molecules/popNote/PopNote";
-import MasonryList from "../components/molecules/masonryList/MasonryList";
-import Layout from "../components/templates/layout/Layout";
 
-export default function Memo() {
+import Layout from "../components/templates/layout/Layout";
+import SearchFilter from "../components/molecules/searchFilter/SearchFilter";
+import MasonryList from "../components/molecules/masonryList/MasonryList";
+import NoteCard from "../components/molecules/noteCard/NoteCard";
+import PopNote from "../components/molecules/popNote/PopNote";
+
+export default function Search(){
 	const { notes, fetchNotes, loading, error, _hasHydrated } = useNoteStore();
 
 	// 편집중인 메모 상태
@@ -38,7 +38,7 @@ export default function Memo() {
 
 	return (
 		<Layout>
-			<NoteForm />
+			<SearchFilter notes={notes} />
 			<p className="title">고정 메모 리스트</p>
 			{loading ? (
 				<p>고정된 메모를 불러오는 중입니다...</p>
@@ -70,5 +70,5 @@ export default function Memo() {
 				/>
 			)}
 		</Layout>
-	);
+	)
 }

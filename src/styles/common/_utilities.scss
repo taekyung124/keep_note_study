@@ -38,6 +38,12 @@
 .tdUdl { text-decoration: underline !important; }
 .tdLine { text-decoration: line-through !important; }
 
+// title
+.title {
+	@include mixins.font_size_sm('sb');
+	color: variables.$colorGray;
+}
+
 // offscreen
 .offscreen {
 	position: absolute !important;
