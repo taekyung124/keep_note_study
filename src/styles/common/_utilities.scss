@@ -39,8 +39,25 @@
 .tdLine { text-decoration: line-through !important; }
 
 // title
+.titleWrap {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 24px;
+	padding-bottom: 8px;
+	gap: 20px;
+}
+
 .title {
+	width: 100%;
 	@include mixins.font_size_sm('sb');
+	color: variables.$colorGray;
+}
+
+.titleItalic {
+	@include mixins.font_size_xl('sb');
+	font-weight: 400;
+	font-style: italic;
 	color: variables.$colorGray;
 }
 

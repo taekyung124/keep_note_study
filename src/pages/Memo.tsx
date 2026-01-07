@@ -25,7 +25,7 @@ export default function Memo() {
 	}
 
 	// 보관 메모 필터링
-	const activeNotes = notes.filter(note => !note.isKeep);
+	const activeNotes = notes.filter(note => !note.isKeep && !note.isDeleted);
 
 	// 고정 메모 구분
 	const fixedNotes = activeNotes.filter(note => note.isFixed);
@@ -42,7 +42,9 @@ export default function Memo() {
 	return (
 		<Layout>
 			<NoteForm />
-			<p className="title">고정 메모 리스트</p>
+			<div className="titleWrap">
+				<p className="title">고정 메모 리스트</p>
+			</div>
 			{loading ? (
 				<StatusNotice loading={true} menu={'pin'} />
 			) : fixedNotes.length === 0 ? (
@@ -55,7 +57,9 @@ export default function Memo() {
 				</MasonryList>
 			)}
 
-			<p className="title">메모 리스트</p>
+			<div className="titleWrap">
+				<p className="title">메모 리스트</p>
+			</div>
 			{error && <p style={{color: 'red'}}>오류 발생: {error}</p>}
 			{loading ? (
 				<StatusNotice loading={true} menu={'memo'} />

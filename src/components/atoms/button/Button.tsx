@@ -45,6 +45,8 @@ const Btn: React.FC<ButtonProps> = ({
 				aria-disabled={disabled}
 				href={disabled ? undefined : href}
 				{...anchorProps}
+				aria-label={offscreen || undefined}
+				data-tooltip-text={offscreen || undefined}
 			>
 				{text && <span className={[styles.text, addClass].join(' ')}>{text}</span>}
 				{icon && renderIcon}
@@ -62,6 +64,8 @@ const Btn: React.FC<ButtonProps> = ({
 			disabled={disabled}
 			onClick={onClick}
 			{...buttonProps}
+			aria-label={offscreen || undefined}
+			data-tooltip-text={offscreen || undefined}
 		>
 			{text && <span className={[styles.text, addClass].join(' ')}>{text}</span>}
 			{icon && renderIcon}

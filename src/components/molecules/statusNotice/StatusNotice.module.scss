@@ -2,39 +2,50 @@
 @use '../../../styles/abstracts/variables';
 @use '../../../styles/abstracts/mixins';
 
+%iconStyle {
+	flex-shrink: 0;
+	display: inline-block;
+	width: 120px;
+	height: 120px;
+	margin: 20px;
+	background-size: 120px 120px;
+	vertical-align: top;
+	text-align: center;
+	opacity: .1;
+}
+
 .statusNoticeWrap {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 
-	.icon, .notice {
+	.notice {
 		flex: 1;
 		display: inline-block;
 		vertical-align: top;
-		text-align: center;
 	}
 
-	.icon {
-		width: 120px;
-		height: 120px;
-		margin: 20px;
-
-		&.memo {
-			background: url('../../../../public/assets/icons/icon_lightbulb_gray.svg') center no-repeat;
-		}
-		&.pin {
-			background: url('../../../../public/assets/icons/icon_fix_gray.svg') center no-repeat;
-		}
-		&.keep {
-			background: url('../../../../public/assets/icons/icon_keep_gray.svg') center no-repeat;
-		}
-		&.trash {
-			background: url('../../../../public/assets/icons/icon_trashcan_gray.svg') center no-repeat;
-		}
-		&.search {
-			background: url('../../../../public/assets/icons/icon_search_gray.svg') center no-repeat;
-		}
+	// icons
+	.iconMemo {
+		@extend %iconStyle;
+		background: url('../../../../public/assets/icons/icon_lightbulb.svg') no-repeat center/120px;
+	}
+	.iconPin {
+		@extend %iconStyle;
+		background: url('../../../../public/assets/icons/icon_fix.svg') no-repeat center/120px;
+	}
+	.iconKeep {
+		@extend %iconStyle;
+		background: url('../../../../public/assets/icons/icon_keep.svg') no-repeat center/120px;
+	}
+	.iconTrash {
+		@extend %iconStyle;
+		background: url('../../../../public/assets/icons/icon_trashcan.svg') no-repeat center/120px;
+	}
+	.iconSearch {
+		@extend %iconStyle;
+		background: url('../../../../public/assets/icons/icon_search.svg') no-repeat center/120px;
 	}
 
 	.notice {

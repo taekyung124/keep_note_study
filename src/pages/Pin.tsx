@@ -40,7 +40,9 @@ const Pin: React.FC = () => {
 	return (
 		<Layout>
 			<NoteForm />
-			<p className="title">고정 메모 리스트</p>
+			<div className="titleWrap">
+				<p className="title">고정 메모 리스트</p>
+			</div>
 			{loading ? (
 				<StatusNotice loading={true} menu={'pin'} />
 			) : fixedNotes.length === 0 ? (

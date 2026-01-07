@@ -4,27 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2591737d-e343-49d5-81a7-1c2d8263f7df" name="Changes" comment="- route 설정">
-      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_fix_gray.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_keep_gray.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_lightbulb_gray.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_search_gray.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_trashcan_gray.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/molecules/statusNotice/StatusNotice.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/molecules/statusNotice/StatusNotice.tsx" afterDir="false" />
+    <list default="true" id="2591737d-e343-49d5-81a7-1c2d8263f7df" name="Changes" comment="- pin, keep 페이지 작업">
+      <change afterPath="$PROJECT_DIR$/public/assets/icons/icon_keeped.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/icons/icon_search.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/icons/icon_search.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/mock/notes.mock.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mock/notes.mock.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/atoms/button/Button.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/atoms/button/Button.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/atoms/button/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/atoms/button/Button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/atoms/fileUpload/FileUpload.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/atoms/fileUpload/FileUpload.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/atoms/fileUpload/FileUpload.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/atoms/fileUpload/FileUpload.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/molecules/noteCard/NoteCard.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/noteCard/NoteCard.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/molecules/noteCard/NoteCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/noteCard/NoteCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/molecules/noteForm/NoteForm.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/noteForm/NoteForm.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/molecules/noteForm/NoteForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/noteForm/NoteForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/molecules/searchFilter/SearchFilter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/searchFilter/SearchFilter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/molecules/searchForm/SearchForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/searchForm/SearchForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/molecules/statusNotice/StatusNotice.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/statusNotice/StatusNotice.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/molecules/statusNotice/StatusNotice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/molecules/statusNotice/StatusNotice.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/organisms/header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/organisms/header/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/organisms/navigation/Navigation.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/organisms/navigation/Navigation.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Keep.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Keep.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Memo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Memo.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Pin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Pin.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Search.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Search.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Trash.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Trash.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/noteStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/noteStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/common/_utilities.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/common/_utilities.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/types/note.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/note.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -111,7 +113,7 @@
       <updated>1764807216213</updated>
       <workItem from="1764807217382" duration="138662000" />
       <workItem from="1766971841913" duration="39735000" />
-      <workItem from="1767571144986" duration="46224000" />
+      <workItem from="1767571144986" duration="58800000" />
     </task>
     <task id="LOCAL-00001" summary="- react, typescript 프로젝트 세팅&#10;- axios, axios-mock-adapter, zustand 설치&#10;- 메모 카드 등록 및 삭제 테스트">
       <option name="closed" value="true" />
@@ -201,7 +203,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767672608735</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="- pin, keep 페이지 작업">
+      <option name="closed" value="true" />
+      <created>1767689726507</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1767689726507</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,6 +263,7 @@
     <MESSAGE value="- 노트(메모) 팝업 컴포넌트 작업&#10;- 수정 기능 추가를 위한 메모 카드, 메모 입력 폼 수정" />
     <MESSAGE value="- 노트 form 이미지 삭제 기능 추가" />
     <MESSAGE value="- route 설정" />
-    <option name="LAST_COMMIT_MESSAGE" value="- route 설정" />
+    <MESSAGE value="- pin, keep 페이지 작업" />
+    <option name="LAST_COMMIT_MESSAGE" value="- pin, keep 페이지 작업" />
   </component>
 </project>

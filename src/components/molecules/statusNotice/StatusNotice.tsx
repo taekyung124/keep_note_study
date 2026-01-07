@@ -16,13 +16,13 @@ const StatusNotice: React.FC<StatusNoticeProps> = ({ loading, menu}) => {
 		search: '검색 결과가 없습니다.',
 	};
 
-	const iconClass = loading ? 'search' : menu;
+	const iconClass = loading ? 'Search' : (menu ? menu.charAt(0).toUpperCase() + menu.slice(1) : '');
 
 	const text = loading ? noticeConfig.loading : noticeConfig[menu];
 
 	return (
 		<div className={styles.statusNoticeWrap}>
-			<span className={[styles.icon, styles[`${iconClass}`]].join(' ')}></span>
+			<span className={styles[`icon${iconClass}`]}></span>
 			<span className={styles.notice}>{text}</span>
 		</div>
 	)

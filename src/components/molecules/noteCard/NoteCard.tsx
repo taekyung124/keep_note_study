@@ -28,14 +28,37 @@ const NoteCard: React.FC<NoteCardProps> = ({ note, onEditClick }) => {
 
 	// 삭제 버튼 핸들러
 	const handleDelete = async () => {
-		if (window.confirm(`"${note.title}" 메모를 정말 삭제하시겠습니까?`)) {
-			try {
-				await deleteNote(note.id);
-				alert('메모가 삭제되었습니다.');
-			} catch (error) {
-				console.error("메모 삭제 실패:", error);
-				alert('메모 삭제에 실패했습니다.');
+		if (note.isDeleted) {
+			// 영구삭제
+			if (window.confirm("이 메모를 영구적으로 삭제하시겠습니까?")) {
+				try {
+					await deleteNote(note.id);
+					alert('메모가 영구 삭제되었습니다.');
+				} catch (error) {
+					alert('삭제 실패');
+				}
 			}
+		} else {
+			// 일반 삭제
+			if (window.confirm(`"${note.title}" 메모를 삭제 하시겠습니까?`)) {
+				try {
+					await updateNote(note.id, { isDeleted: true });
+					alert('메모가 휴지통으로 이동되었습니다.');
+				} catch (error) {
+					console.error("휴지통 이동 실패:", error);
+					alert('휴지통 이동에 실패했습니다.');
+				}
+			}
+		}
+	};
+
+	// 삭제 복구 핸들러 추가
+	const handleRestore = async () => {
+		try {
+			await updateNote(note.id, { isDeleted: false });
+			alert('메모가 복구되었습니다.');
+		} catch (error) {
+			alert('복구 실패');
 		}
 	};
 
@@ -121,50 +144,62 @@ const NoteCard: React.FC<NoteCardProps> = ({ note, onEditClick }) => {
 			)}
 			<h3 className={styles.title}>{note.title}</h3>
 			<p className={styles.text}>{note.content}</p>
-			<div className={styles.hoverBox}>
-				<ul className={styles.editList}>
-					<li className={styles.item}>
-						<Btn type={'button'} size={'lg'} icon={note.isFixed ? 'fix_active' : 'fix'} offscreen={note.isFixed ? '고정' : '고정해제'} onClick={handleFixToggle} />
-					</li>
-					<li className={styles.item}>
-						<Btn type={'button'} size={'lg'} icon={'palette'} offscreen={'컬러선택'} onClick={handleColorChipToggle} />
-						{isColorListVisible &&
-							<div className={styles.colorList}>
-								{availableColors.map((colorCode: Color) => (
-									<ColorChip
-										key={colorCode}
-										colorCode={colorCode}
-										selectedColor={note.color as Color}
-										onSelect={handleColorChange}
-									/>
-								))}
-							</div>
-						}
-					</li>
-					<li className={styles.item}>
-						<FileUpload onFileChange={handleImageUpload} />
-					</li>
-					<li className={styles.item}>
-						<Btn type={'button'} size={'lg'} 
-							 icon={note.isKeep ? 'keeped' : 'keep'} 
-							 offscreen={note.isKeep ? '보관 취소' : '메모 보관'}
-							 onClick={handleKeepToggle}
-						/>
-					</li>
-					<li className={styles.item}>
-						<Btn type={'button'} size={'lg'} icon={'more'} offscreen={'더보기'} onClick={handelMenuToggle} />
-						{isMenuVisible &&
-							<Dropdown menus={[{label: '그림 추가'}, {label: '사본 만들기'}]} />
-						}
-					</li>
-					<li className={styles.item}>
-						<Btn type={'button'} size={'lg'} icon={'close'} offscreen={'메모 삭제'} onClick={handleDelete} />
-					</li>
-				</ul>
-			</div>
-
+			{note.isDeleted ? (
+				<div className={styles.hoverBox}>
+					<ul className={styles.editList}>
+						<li className={styles.item}>
+							<Btn type={'button'} size={'lg'} icon={'delete'} offscreen={'영구삭제'} onClick={handleDelete} />
+						</li>
+						<li className={styles.item}>
+							<Btn type={'button'} size={'lg'} icon={'restore'} offscreen={'복원'} onClick={handleRestore} />
+						</li>
+					</ul>
+				</div>
+			) : (
+				<div className={styles.hoverBox}>
+					<ul className={styles.editList}>
+						<li className={styles.item}>
+							<Btn type={'button'} size={'lg'} icon={note.isFixed ? 'fix_active' : 'fix'} offscreen={note.isFixed ? '고정해제' : '메모고정'} onClick={handleFixToggle} />
+						</li>
+						<li className={styles.item}>
+							<Btn type={'button'} size={'lg'} icon={'palette'} offscreen={'컬러선택'} onClick={handleColorChipToggle} />
+							{isColorListVisible &&
+								<div className={styles.colorList}>
+									{availableColors.map((colorCode: Color) => (
+										<ColorChip
+											key={colorCode}
+											colorCode={colorCode}
+											selectedColor={note.color as Color}
+											onSelect={handleColorChange}
+										/>
+									))}
+								</div>
+							}
+						</li>
+						<li className={styles.item}>
+							<FileUpload onFileChange={handleImageUpload} />
+						</li>
+						<li className={styles.item}>
+							<Btn type={'button'} size={'lg'}
+								 icon={note.isKeep ? 'keeped' : 'keep'}
+								 offscreen={note.isKeep ? '보관취소' : '메모보관'}
+								 onClick={handleKeepToggle}
+							/>
+						</li>
+						<li className={styles.item}>
+							<Btn type={'button'} size={'lg'} icon={'more'} offscreen={'더보기'} onClick={handelMenuToggle} />
+							{isMenuVisible &&
+								<Dropdown menus={[{label: '그림 추가'}, {label: '사본 만들기'}]} />
+							}
+						</li>
+						<li className={styles.item}>
+							<Btn type={'button'} size={'lg'} icon={'close'} offscreen={'메모삭제'} onClick={handleDelete} />
+						</li>
+					</ul>
+				</div>
+			)}
 			<button className={styles.btnLink} onClick={() => onEditClick(note)}>
-				<span className="offscreen">메모 편집</span>
+				<span className="offscreen">메모편집</span>
 			</button>
 		</div>
 	);

@@ -9,8 +9,9 @@ interface NoteState {
 	error: string | null;
 	fetchNotes: () => Promise<void>;
 	addNote: (data: NewNote) => Promise<void>;
-	deleteNote: (id: number) => Promise<void>;
-	updateNote: (id: number, updateData: Partial<Note>) => void;
+	deleteNote: (id: number) => Promise<void>; // 휴지통에서 영구삭제
+	deleteNoteAll: () => Promise<void>;
+	updateNote: (id: number, updateData: Partial<Note>) => Promise<void>;
 	_hasHydrated: boolean;
 }
 
@@ -34,6 +35,7 @@ const noteStoreCreator: StateCreator<NoteState> = (set, get) => ({
 		}
 	},
 
+	// [영구 삭제]
 	deleteNote: async (id) => {
 		try {
 			await axios.delete(`/notes/${id}`);
@@ -41,18 +43,38 @@ const noteStoreCreator: StateCreator<NoteState> = (set, get) => ({
 				notes: state.notes.filter(note => note.id !== id)
 			}));
 		} catch (err) {
-			console.error('메모 삭제 실패', err);
+			console.error('메모 영구 삭제 실패', err);
 			throw err;
 		}
 	},
 
+	// [영구 삭제] 전체삭제
+	deleteNoteAll: async () => {
+		const { notes } = get();
+		const deletedIds = notes.filter(n => n.isDeleted).map(n => n.id);
+
+		if (deletedIds.length === 0) return;
+
+		try {
+			await Promise.all(deletedIds.map(id => axios.delete(`/notes/${id}`)));
+
+			set((state) => ({
+				notes: state.notes.filter(note => !deletedIds.includes(note.id))
+			}));
+		} catch (err) {
+			console.error('휴지통 비우기 실패', err);
+			throw err;
+		}
+	},
+
+	// [업데이트] 휴지통으로 보내기(isDeleted: true) 또는 복구(isDeleted: false) 시 사용
 	updateNote: async (id, updateData) => {
 		try {
 			const res = await axios.patch<Note>(`/notes/${id}`, updateData);
 
 			set((state) => ({
 				notes: state.notes.map((note) =>
-					note.id === id ? res.data : note
+					note.id === id ? { ...note, ...res.data } : note
 				),
 			}));
 		} catch (err) {

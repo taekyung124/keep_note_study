@@ -8,10 +8,10 @@ const mock = new MockAdapter(axios, { delayResponse: 300 });
 const LOCAL_STORAGE_KEY = "mock_notes";
 
 let initialNotes: Note[] = [
-	{ id: 1, title: "첫 메모", content: "내용 와랄ㄹ라와랄라 내용 와랄ㄹ라와랄라 내용 와랄ㄹ라와랄라", color: Color.SALMON, isFixed: false },
-	{ id: 2, title: "두번째 메모", content: "내용 와랄ㄹ라와랄라내용 와랄ㄹ라와랄라", color: Color.ORANGE, isFixed: false },
-	{ id: 3, title: "세번째 메모", content: "내용 와랄ㄹ라와랄라 내용 와랄ㄹ라와랄라 내용 와랄ㄹ라와랄라", color: Color.YELLOW, isFixed: false },
-	{ id: 4, title: "네번째 메모", content: "내용 와랄ㄹ라와랄라 내용 와랄ㄹ라와랄라", color: Color.GREEN, isFixed: false },
+	{ id: 1, title: "첫 메모", content: "내용 와랄ㄹ라와랄라 내용 와랄ㄹ라와랄라 내용 와랄ㄹ라와랄라", color: Color.SALMON, isFixed: false, isDeleted: false },
+	{ id: 2, title: "두번째 메모", content: "내용 와랄ㄹ라와랄라내용 와랄ㄹ라와랄라", color: Color.ORANGE, isFixed: false, isDeleted: false },
+	{ id: 3, title: "세번째 메모", content: "내용 와랄ㄹ라와랄라 내용 와랄ㄹ라와랄라 내용 와랄ㄹ라와랄라", color: Color.YELLOW, isFixed: false, isDeleted: false },
+	{ id: 4, title: "네번째 메모", content: "내용 와랄ㄹ라와랄라 내용 와랄ㄹ라와랄라", color: Color.GREEN, isFixed: false, isDeleted: false },
 ];
 
 const getNotesFromStorage = (): Note[] => {
@@ -42,6 +42,8 @@ mock.onPost("/notes").reply((config) => {
 		id: Date.now(),
 		...data,
 		isFixed: data.isFixed || false,
+		isKeep: data.isKeep || false,
+		isDeleted: false,
 		color: data.color || Color.TRANSPARENT
 	};
 	notes.push(newNote);

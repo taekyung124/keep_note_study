@@ -178,7 +178,7 @@ const NoteForm: React.FC<NoteFormProps> = ({initialData, onSuccess}) => {
 	return (
 		<form className={styles.noteForm} onSubmit={handleSubmit} style={{ backgroundColor: color }}>
 			<div className={styles.btnFix}>
-				<Btn type={'button'} size={'lg'} icon={isFixed ? 'fix_active' : 'fix'} offscreen={isFixed ? '메모고정' : '고정해제'} onClick={handleFixToggle} />
+				<Btn type={'button'} size={'lg'} icon={isFixed ? 'fix_active' : 'fix'} offscreen={isFixed ? '고정해제' : '메모고정'} onClick={handleFixToggle} />
 			</div>
 			<div className={styles.textField}>
 				<div className={styles.title}>
@@ -205,7 +205,7 @@ const NoteForm: React.FC<NoteFormProps> = ({initialData, onSuccess}) => {
 									className={styles.btnDelete}
 									onClick={() => handleDeleteImage(index)}
 								>
-									<span className="offscreen">이미지 삭제</span>
+									<span className="offscreen">이미지삭제</span>
 								</button>
 							</div>
 						))}
@@ -247,7 +247,7 @@ const NoteForm: React.FC<NoteFormProps> = ({initialData, onSuccess}) => {
 					<li className={styles.item}>
 						<Btn type={'button'} size={'lg'}
 							 icon={isKeep ? 'keeped' : 'keep'}
-							 offscreen={isKeep? '보관 취소' : '메모 보관'}
+							 offscreen={isKeep? '보관취소' : '메모보관'}
 							 onClick={handleKeepToggle}
 						/>
 					</li>

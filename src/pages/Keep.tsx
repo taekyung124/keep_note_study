@@ -41,7 +41,9 @@ const Keep: React.FC = () => {
 	return (
 		<Layout>
 			<NoteForm />
-			<p className="title">보관 처리된 메모 리스트</p>
+			<div className="titleWrap">
+				<p className="title">보관 처리된 메모 리스트</p>
+			</div>
 			{loading ? (
 				<StatusNotice loading={true} menu={'keep'} />
 			) : keepedNotes.length === 0 ? (

@@ -40,7 +40,7 @@ const SearchForm: React.FC<SearchFormState> = ({
 			</div>
 			<Btn
 				type={'button'} size={'lg'} icon={'close'}
-				onClick={handleClearSearch} offscreen={'검색어 지우기'}
+				onClick={handleClearSearch} offscreen={'검색어지우기'}
 				disabled={!searchText}
 			/>
 		</form>

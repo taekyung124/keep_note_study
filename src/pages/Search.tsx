@@ -39,7 +39,9 @@ const Search: React.FC = () => {
 	return (
 		<Layout>
 			<SearchFilter notes={notes} />
-			<p className="title">고정 메모 리스트</p>
+			<div className="titleWrap">
+				<p className="title">고정 메모 리스트</p>
+			</div>
 			{loading ? (
 				<p>고정된 메모를 불러오는 중입니다...</p>
 			) : fixedNotes.length === 0 ? (
@@ -52,7 +54,9 @@ const Search: React.FC = () => {
 				</MasonryList>
 			)}
 
-			<p className="title">메모 리스트</p>
+			<div className="titleWrap">
+				<p className="title">메모 리스트</p>
+			</div>
 			{error && <p style={{color: 'red'}}>오류 발생: {error}</p>}
 			{loading ? (
 				<p>메모를 불러오는 중입니다...</p>
